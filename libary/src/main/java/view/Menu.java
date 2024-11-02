@@ -184,7 +184,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Quản Lí Thư Viện");
         jpn1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 160, -1));
 
-        getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 210, 640));
+        getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 620));
 
         jPanelview.setBackground(new java.awt.Color(255, 255, 255));
 
