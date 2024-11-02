@@ -8,12 +8,12 @@ package view;
  *
  * @author Mark
  */
-public class TrangChuPanel extends javax.swing.JPanel {
+public class QuanLiMuonSachPn extends javax.swing.JPanel {
 
     /**
-     * Creates new form TrangChuPanel
+     * Creates new form QuanLiMuonSachPn
      */
-    public TrangChuPanel() {
+    public QuanLiMuonSachPn() {
         initComponents();
     }
 
@@ -26,10 +26,16 @@ public class TrangChuPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jToggleButton1.setText("jToggleButton1");
+        add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 122, -1, -1));
+        add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, 48));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -44,12 +50,14 @@ public class TrangChuPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, 390));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 359));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

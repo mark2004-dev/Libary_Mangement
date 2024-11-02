@@ -16,8 +16,11 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import view.QuanLINguoiMuon;
 import view.TrangChuPanel;
-import view.quanlikho;
+import view.QuanLiKhoSachPN;
+import view.QuanLiMuonSachPn;
+import view.QuanLiNhanVien;
 
 
 public class ChuyenManHinhController {
@@ -71,14 +74,14 @@ public class ChuyenManHinhController {
                     node = new TrangChuPanel();
                     break;
                 case "quanlikhosach":
-                    node = new quanlikho();
+                    node = new QuanLiKhoSachPN();
                     break;
-//                case "NhanVien":
-//                    node = new ListNhanVienJPanel();
-//                    break;
-//                case "KhachHang":
-//                    node = new ListKhachHang();
-//                    break;
+                case "quanlinhanvien":
+                    node = new QuanLiNhanVien();
+                    break;
+                case "quanlinguoimuon":
+                    node = new QuanLINguoiMuon();
+                    break;
 //                case "PhieuNhap":
 //                    node = new QuanLyPhieu();
 //                    break;

@@ -8,12 +8,12 @@ package view;
  *
  * @author Mark
  */
-public class quanlikho extends javax.swing.JPanel {
+public class QuanLiKhoSachPN extends javax.swing.JPanel {
 
     /**
      * Creates new form quanlimuonsach
      */
-    public quanlikho() {
+    public QuanLiKhoSachPN() {
         initComponents();
     }
 
