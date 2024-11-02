@@ -186,18 +186,20 @@ public class Menu extends javax.swing.JFrame {
 
         getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 210, 640));
 
+        jPanelview.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanelviewLayout = new javax.swing.GroupLayout(jPanelview);
         jPanelview.setLayout(jPanelviewLayout);
         jPanelviewLayout.setHorizontalGroup(
             jPanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+            .addGap(0, 830, Short.MAX_VALUE)
         );
         jPanelviewLayout.setVerticalGroup(
             jPanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 620, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 730, 620));
+        getContentPane().add(jPanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 830, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
