@@ -81,6 +81,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,7 +103,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 500, 390));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 510, 370));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Chức năng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 0, 51))); // NOI18N
@@ -111,7 +116,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 43, -1, 30));
 
         jButton2.setText("Sửa");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +124,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 30));
 
         jButton3.setText("Xoá");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +132,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 43, -1, 30));
 
         jButton5.setText("Chi tiết sách");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +140,9 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, 130));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 290, 150));
 
         jLabel1.setText("Nhập vào Id thêm , sửa");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, -1));
@@ -146,10 +151,10 @@ public class TrangChuPanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel3.setText("Năm xuất bản:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
         jLabel4.setText("Giá:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 30, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 30, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Tìm kiếm"));
@@ -162,19 +167,30 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 35, -1, -1));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 30));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 360, 70));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 130, -1));
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 160, -1));
-        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 160, -1));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 232, 160, 30));
+        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 160, 30));
+        add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 160, 30));
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
             }
         });
-        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, 160, -1));
+        add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 160, 30));
+        add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 160, 30));
+        add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 160, 30));
+
+        jLabel5.setText("Nhà xuất bản");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        jLabel6.setText("Loại Sách");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
+
+        jButton6.setText("Improt");
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -350,10 +366,13 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -363,5 +382,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

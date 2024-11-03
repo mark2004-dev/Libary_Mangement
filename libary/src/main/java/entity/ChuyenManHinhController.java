@@ -73,8 +73,8 @@ public class ChuyenManHinhController {
                 case "trangchu":
                     node = new TrangChuPanel();
                     break;
-                case "quanlikhosach":
-                    node = new QuanLiKhoSachPN();
+                case "quanlimuonsach":
+                    node = new QuanLiMuonSachPn();
                     break;
                 case "quanlinhanvien":
                     node = new QuanLiNhanVien();
@@ -82,26 +82,7 @@ public class ChuyenManHinhController {
                 case "quanlinguoimuon":
                     node = new QuanLINguoiMuon();
                     break;
-//                case "PhieuNhap":
-//                    node = new QuanLyPhieu();
-//                    break;
-//                case "ThongKe":
-//                    node = new ThongKeJpane();
-//                    break;
-//                default:;
-//                    break;
-//                case "NhanVien":
-//                    node = new ListNhanVienJPanel();
-//                    break;
-//                case "KhachHang":
-//                    node = new ListKhachHang();
-//                    break;
-//                case "PhieuNhap":
-//                    node = new QuanLyPhieu();
-//                    break;
-//                case "ThongKe":
-//                    node = new ThongKeJpane();
-//                    break;
+//               
                 default:
                     node = new TrangChuPanel();
                     break;
