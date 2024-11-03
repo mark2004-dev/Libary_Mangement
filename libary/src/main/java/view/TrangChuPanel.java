@@ -4,6 +4,16 @@
  */
 package view;
 
+import DAO.SachDAO;
+import entity.Sach;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mark
@@ -15,6 +25,33 @@ public class TrangChuPanel extends javax.swing.JPanel {
      */
     public TrangChuPanel() {
         initComponents();
+        getall();
+    }
+        
+
+    public void getall() {
+        SachDAO dao = new SachDAO();
+        List<Sach> sachList = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
+        DefaultTableModel model = new DefaultTableModel();
+        
+        // Thêm cột vào model
+        model.addColumn("ID");
+        model.addColumn("Tên Sách");
+        model.addColumn("Năm Xuất Bản");
+        model.addColumn("Giá"); // Thêm cột Giá nếu có
+
+        // Thêm dữ liệu vào model
+        for (Sach book : sachList) {
+            model.addRow(new Object[]{
+                book.getId(),           // ID của sách
+                book.getTenSach(),      // Tên sách
+               
+                book.getNamXuatBan(),   // Năm xuất bản
+                book.getGia()           // Giá
+            });
+        }
+
+        jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
     }
 
     /**
@@ -69,6 +106,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Thêm ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jButton2.setText("Sửa");
@@ -80,6 +122,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
 
         jButton3.setText("Xoá");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         jButton5.setText("Chi tiết sách");
@@ -92,8 +139,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, 130));
 
-        jLabel1.setText("ID:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 30, -1));
+        jLabel1.setText("Nhập vào Id thêm , sửa");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, -1));
 
         jLabel2.setText("Tiêu đề sách:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
@@ -118,7 +165,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 35, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 360, 70));
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 160, -1));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 130, -1));
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 160, -1));
         add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 160, -1));
 
@@ -131,11 +178,71 @@ public class TrangChuPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+    // Lấy dữ liệu từ các JTextField
+    int id = Integer.parseInt(jTextField2.getText().trim());
+    String ten = jTextField3.getText().trim();
+    int namxb = Integer.parseInt(jTextField4.getText().trim());
+    double gia = Double.parseDouble(jTextField5.getText().trim());
+
+    // Khởi tạo đối tượng SachDAO để truy xuất cơ sở dữ liệu
+    SachDAO sachDAO = new SachDAO();
+    Sach sach = sachDAO.findById(id); // Tìm sách theo ID
+
+    if (sach == null) {
+        JOptionPane.showMessageDialog(null, "ID sách không tồn tại, không thể cập nhật!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Cập nhật thông tin sách
+        sach.setTenSach(ten);
+        sach.setNamXuatBan(namxb);
+        sach.setGia(gia);
+
+        boolean updated = sachDAO.updateBook(sach); // Giả sử updateBook trả về true nếu cập nhật thành công
+
+        if (updated) {
+            JOptionPane.showMessageDialog(null, "Cập nhật thông tin sách thành công!");
+        getall();
+          
+           
+        } else {
+            JOptionPane.showMessageDialog(null, "Cập nhật thông tin sách thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+} catch (Exception e) {  // Gộp SQLException và NumberFormatException
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+}
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        SachDAO sachDAO = new SachDAO();
+        String ten = jTextField1.getText().trim();
+        List<Sach> foundBooks = sachDAO.findByName(ten);
+        DefaultTableModel model = new DefaultTableModel();
+        
+        // Thêm cột vào model
+        model.addColumn("ID");
+        model.addColumn("Tên Sách");
+        model.addColumn("Năm Xuất Bản");
+        model.addColumn("Giá"); // Thêm cột Giá nếu có
+
+        // Thêm dữ liệu vào model
+        for (Sach book : foundBooks) {
+            model.addRow(new Object[]{
+                book.getId(),           // ID của sách
+                book.getTenSach(),      // Tên sách
+               
+                book.getNamXuatBan(),   // Năm xuất bản
+                book.getGia()           // Giá
+            });
+        }
+
+        jTable1.setModel(model);
+      
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -145,6 +252,96 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    // Lấy dữ liệu từ các JTextField
+    try {
+    // Lấy dữ liệu từ các JTextField
+    String idStr = jTextField2.getText().trim();
+    String ten = jTextField3.getText().trim();
+    String namxbStr = jTextField4.getText().trim();
+    String giaStr = jTextField5.getText().trim();
+
+    // Kiểm tra xem các trường có rỗng không
+    if (idStr.isEmpty() || ten.isEmpty() || namxbStr.isEmpty() || giaStr.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Chuyển đổi từ String sang int và double
+    int id = Integer.parseInt(idStr);
+    int namxb = Integer.parseInt(namxbStr);
+    double gia = Double.parseDouble(giaStr);
+
+    // Kiểm tra định dạng giá trị
+    if (namxb < 1900 || namxb > 2024) {
+        JOptionPane.showMessageDialog(null, "Năm xuất bản không hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (gia <= 0) {
+        JOptionPane.showMessageDialog(null, "Giá sách phải lớn hơn 0!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Khởi tạo đối tượng SachDAO để truy xuất cơ sở dữ liệu
+    SachDAO sachDAO = new SachDAO();
+    Sach sach = sachDAO.findById(id); // Tìm sách theo ID
+
+    if (sach == null) {
+        // Nếu sách không tồn tại, tạo một đối tượng mới và lưu vào cơ sở dữ liệu
+        sach = new Sach(id, ten, namxb, gia);
+        boolean saved = sachDAO.save(sach); // Gọi hàm save để thêm sách mới
+        if (saved) {
+            JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
+            getall();
+        } else {
+            JOptionPane.showMessageDialog(null, "Thêm sách thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "ID đã tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID, năm xuất bản và giá!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+} catch (Exception e) {
+    e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+    JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+     private void deleteSelectedBook() {
+        // Lấy hàng được chọn
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một quyển sách để xóa!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Lấy ID từ hàng được chọn
+        int id = (int) jTable1.getValueAt(selectedRow, 0); // Giả sử ID là ở cột 0
+
+        // Tạo đối tượng SachDAO và gọi phương thức xóa
+        SachDAO sachDAO = new SachDAO();
+        boolean isDeleted = sachDAO.delete(id);
+
+        if (isDeleted) {
+            JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
+            // Xóa hàng khỏi bảng
+            ((DefaultTableModel) jTable1.getModel()).removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(this, "ID sách không tồn tại hoặc xóa thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        deleteSelectedBook();
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

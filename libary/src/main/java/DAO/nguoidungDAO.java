@@ -58,16 +58,16 @@ public class nguoidungDAO implements DAOinterfacee<nguoidung> {
     }
 
     @Override
-    public nguoidung findById(nguoidung t) {
+    public nguoidung findById(int id) {
         nguoidung ketQua = null;
         try {
             // Bước 1: tạo kết nối đến CSDL
             Connection con = jdbcUtil.getConnection();
 
             // Bước 2: tạo ra đối tượng statement
-            String sql = "SELECT * FROM nguoidung WHERE tentk=? ";
+            String sql = "SELECT * FROM nguoidung WHERE id=? ";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, t.getTentk());
+            st.setInt(1, id);
             
 
             // Bước 3: thực thi câu lệnh SQL

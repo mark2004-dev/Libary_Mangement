@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface DAOinterfacee<T> {
     public T findByIdAndPassWork(T t);
-    public T findById(T t);
+    public T findById(int id);
     public List<T> getAll();
     public boolean deleteById(int id);
     
