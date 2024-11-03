@@ -4,6 +4,12 @@
  */
 package view;
 
+import DAO.NguoiMuonDAO;
+import entity.NguoiMuon;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Mark
@@ -15,8 +21,35 @@ public class QuanLiMuonSachPn extends javax.swing.JPanel {
      */
     public QuanLiMuonSachPn() {
         initComponents();
+        getall();
     }
+    
+    public void getall() {
+        NguoiMuonDAO dao = new NguoiMuonDAO();
+        List<NguoiMuon> nguoimuons = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
+        DefaultTableModel model = new DefaultTableModel();
+        
+        // Thêm cột vào model
+        model.addColumn("ID nguoimuon");
+        model.addColumn("Tên người mươn");
+        model.addColumn("ngày mượn");
+        model.addColumn("ngày trả");
+        model.addColumn("số lượng");
+        // Thêm cột Giá nếu có
 
+        // Thêm dữ liệu vào model
+for (NguoiMuon nguoi : nguoimuons) {
+    model.addRow(new Object[]{
+        nguoi.getIdNguoiMuon(),       // ID của sách
+        nguoi.getTenNguoiMuon(),      // Tên sách
+        nguoi.getNgayMuon(),          // Ngày mượn
+        nguoi.getNgayTra(),           // Ngày trả
+        nguoi.getSoLuongMuon()         // Trạng thái
+    });
+}
+
+        jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

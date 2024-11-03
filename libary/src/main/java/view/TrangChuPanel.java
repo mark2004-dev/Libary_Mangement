@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -86,6 +87,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -190,7 +193,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         jButton6.setText("Improt");
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, -1));
+        add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 160, -1));
+
+        jLabel7.setText("tacgia");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -267,7 +274,43 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+       int selectedRow = jTable1.getSelectedRow();
+    if (selectedRow != -1) {
+        // Lấy ID sách từ cột ID của hàng được chọn
+        String id = jTable1.getValueAt(selectedRow, 0).toString(); // Giả sử cột 0 là cột chứa id
+
+        // Kiểm tra kiểu dữ liệu
+       int masach=Integer.parseInt(id);
+        openChiTietSach(masach);
+    } else {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một sách từ bảng để xem chi tiết.");
+    }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+private void openChiTietSach(int idSach) {
+    // Tiêu đề của cửa sổ
+    
+    SachDAO dao = new SachDAO();
+    Sach sach = dao.findById(idSach);
+
+    if (sach != null) { // Kiểm tra nếu sach không null
+        chiTietSachs chitiet = new chiTietSachs();
+        chitiet.setIdSach(idSach);
+        
+        // Thiết lập các trường thông tin trước khi hiển thị
+        chitiet.settensach(sach.getTenSach());
+        chitiet.settacgia(sach.getTacgia());
+        chitiet.setsoluong(String.valueOf(sach.getSoluong()));
+        chitiet.settheloai(sach.getTheloai());
+        chitiet.setnhaxuatban(sach.getNhaxb());
+        chitiet.setnamxuatban(String.valueOf(sach.getNamXuatBan()));
+        
+        chitiet.pack();
+        chitiet.setVisible(true); // Gọi sau khi thiết lập thông tin
+    } else {
+        JOptionPane.showMessageDialog(null, "Không tìm thấy sách với ID: " + idSach);
+    }
+}
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -279,6 +322,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
     String ten = jTextField3.getText().trim();
     String namxbStr = jTextField4.getText().trim();
     String giaStr = jTextField5.getText().trim();
+    String tacgia = jTextField8.getText().trim();
+    String nhaxb = jTextField6.getText().trim();
+    String theloai = jTextField7.getText().trim();
+    
+    
 
     // Kiểm tra xem các trường có rỗng không
     if (idStr.isEmpty() || ten.isEmpty() || namxbStr.isEmpty() || giaStr.isEmpty()) {
@@ -308,7 +356,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
     if (sach == null) {
         // Nếu sách không tồn tại, tạo một đối tượng mới và lưu vào cơ sở dữ liệu
-        sach = new Sach(id, ten, namxb, gia);
+        sach = new Sach(id, ten, namxb, gia,tacgia,nhaxb,theloai);
         boolean saved = sachDAO.save(sach); // Gọi hàm save để thêm sách mới
         if (saved) {
             JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
@@ -373,6 +421,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -384,5 +433,6 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }

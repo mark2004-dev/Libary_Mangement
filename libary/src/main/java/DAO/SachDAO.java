@@ -50,8 +50,12 @@ public class SachDAO implements DAOinterfacee<Sach>{
                 String tensach = rs.getString("ten_sach");
                 int namxb = rs.getInt("nam_xuat_ban");
                 double gia = rs.getDouble("gia");
+                String tacgia =rs.getString("tac_gia");
+                String nhaxb =rs.getString("nha_xuat_ban");
+                String theloai =rs.getString("the_loai");
+                int soluong = rs.getInt("so_luong");
 
-                ketQua = new Sach(id1, tensach, namxb, gia);
+                ketQua = new Sach(id1, tensach, namxb, gia,tacgia,nhaxb,theloai,soluong);
             }
             jdbcUtil.closeConnection(con);
         } catch (SQLException e) {
@@ -156,7 +160,7 @@ public class SachDAO implements DAOinterfacee<Sach>{
         }
     }
      public boolean save(Sach sach) {
-        String sql = "INSERT INTO sach (id, ten_sach, nam_xuat_ban, gia) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO sach (id, ten_sach, nam_xuat_ban, gia) VALUES (?, ?, ?, ?,?,?,?)";
         try (Connection con = jdbcUtil.getConnection();
              PreparedStatement pstmt = con.prepareStatement(sql)) {
              
@@ -165,6 +169,10 @@ public class SachDAO implements DAOinterfacee<Sach>{
             pstmt.setString(2, sach.getTenSach());
             pstmt.setInt(3, sach.getNamXuatBan());
             pstmt.setDouble(4, sach.getGia());
+            pstmt.setString(5, sach.getTacgia());
+            pstmt.setString(6, sach.getNhaxb());
+            pstmt.setString(7, sach.getTheloai());
+            
             
             // Thực thi câu lệnh SQL
             int rowsInserted = pstmt.executeUpdate();

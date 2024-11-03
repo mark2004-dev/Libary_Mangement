@@ -13,7 +13,11 @@ public class Sach {
     private String tenSach;
     private int namXuatBan;
     private double gia;
-
+    private String tacgia;
+    private String nhaxb;
+    private String theloai;
+    private int soluong;
+    
     // Constructor không tham số
     public Sach() {}
 
@@ -24,6 +28,65 @@ public class Sach {
         this.namXuatBan = namXuatBan;
         this.gia = gia;
     }
+
+    public int getSoluong() {
+        return soluong;
+    }
+
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+    }
+
+    
+
+    public Sach(int id, String tenSach, int namXuatBan, double gia, String tacgia, String nhaxb, String theloai, int soluong) {
+        this.id = id;
+        this.tenSach = tenSach;
+        this.namXuatBan = namXuatBan;
+        this.gia = gia;
+        this.tacgia = tacgia;
+        this.nhaxb = nhaxb;
+        this.theloai = theloai;
+        this.soluong = soluong;
+    }
+
+    
+
+    
+    public Sach(int id, String tenSach, int namXuatBan, double gia, String tacgia, String nhaxb, String theloai) {
+        this.id = id;
+        this.tenSach = tenSach;
+        this.namXuatBan = namXuatBan;
+        this.gia = gia;
+        this.tacgia = tacgia;
+        this.nhaxb = nhaxb;
+        this.theloai = theloai;
+    }
+
+    public String getTacgia() {
+        return tacgia;
+    }
+
+    public void setTacgia(String tacgia) {
+        this.tacgia = tacgia;
+    }
+
+    public String getNhaxb() {
+        return nhaxb;
+    }
+
+    public void setNhaxb(String nhaxb) {
+        this.nhaxb = nhaxb;
+    }
+
+    public String getTheloai() {
+        return theloai;
+    }
+
+    public void setTheloai(String theloai) {
+        this.theloai = theloai;
+    }
+    
 
     // Getter và Setter cho từng thuộc tính
     public int getId() {
