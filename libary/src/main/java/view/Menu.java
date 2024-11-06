@@ -8,6 +8,7 @@ import entity.ChuyenManHinhController;
 import entity.danhmuc;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -143,6 +144,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Đăng Xuất");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -182,6 +188,27 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+      int choice = JOptionPane.showConfirmDialog(
+        this,
+        "Bạn có chắc chắn muốn đăng xuất?",
+        "Xác nhận đăng xuất",
+        JOptionPane.YES_NO_OPTION
+    );
+    
+    if (choice == JOptionPane.YES_OPTION) {
+        // Create new choose_signin instance
+        choose_signin cs = new choose_signin();
+        
+        // Hide/dispose the current Menu window 
+        this.dispose();
+        
+        // Show the choose_signin window
+        cs.setVisible(true);
+    }
+        
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
