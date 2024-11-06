@@ -6,6 +6,11 @@ package view;
 
 import DAO.SachDAO;
 import entity.Sach;
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -55,6 +60,7 @@ private int idSach;
     {
      jTextField5.setText(namxb) ;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +85,7 @@ private int idSach;
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,17 +148,20 @@ private int idSach;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
@@ -222,6 +231,7 @@ private int idSach;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
@@ -230,6 +240,26 @@ private int idSach;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    public void showImage(byte[] anh) {
+        try {
+            // Chuyển mảng byte thành đối tượng Image
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(anh);
+            Image image = ImageIO.read(byteArrayInputStream);
+
+            // Chuyển đổi ảnh sang ImageIcon
+            ImageIcon imageIcon = new ImageIcon(image);
+
+            // Điều chỉnh kích thước ảnh nếu cần
+            Image scaledImage = imageIcon.getImage().getScaledInstance(132, 169, Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(scaledImage);
+
+            // Hiển thị ảnh vào JLabel
+            jLabel7.setIcon(imageIcon);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

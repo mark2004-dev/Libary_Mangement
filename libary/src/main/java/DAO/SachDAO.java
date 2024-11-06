@@ -31,8 +31,9 @@ public class  SachDAO implements DAOinterfacee<Sach> {
                 String nhaxb = rs.getString("nha_xuat_ban");
                 String theloai = rs.getString("the_loai");
                 int soluong = rs.getInt("so_luong");
+                 byte[] anh = rs.getBytes("anh");
 
-                ketQua = new Sach(id1, tensach, namxb, gia, tacgia, nhaxb, theloai, soluong);
+                ketQua = new Sach(id1, tensach, namxb, gia, tacgia, nhaxb, theloai, soluong,anh);
             }
         } catch (SQLException e) {
             e.printStackTrace();

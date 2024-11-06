@@ -6,11 +6,16 @@ package view;
 
 import DAO.SachDAO;
 import entity.Sach;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -193,7 +198,12 @@ public class TrangChuPanel extends javax.swing.JPanel {
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         jButton6.setText("Improt");
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, -1, -1));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 520, 110, -1));
         add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 160, -1));
 
         jLabel7.setText("tacgia");
@@ -305,6 +315,11 @@ private void openChiTietSach(int idSach) {
         chitiet.setnhaxuatban(sach.getNhaxb());
         chitiet.setnamxuatban(String.valueOf(sach.getNamXuatBan()));
         
+        // Hiển thị ảnh (nếu có)
+        if (sach.getAnh() != null && sach.getAnh().length > 0) {
+            chitiet.showImage(sach.getAnh());
+        }
+        
         chitiet.pack();
         chitiet.setVisible(true); // Gọi sau khi thiết lập thông tin
     } else {
@@ -407,6 +422,65 @@ private void openChiTietSach(int idSach) {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "chọn sách đã!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+         // Lấy ID quyển sách từ cột (giả sử ID nằm ở cột đầu tiên)
+    int selectedBookId = (int) jTable1.getValueAt(selectedRow, 0);
+
+    // Mở hộp thoại chọn ảnh
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Chọn ảnh");
+    fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Ảnh", "jpg", "jpeg", "png", "gif"));
+
+    int result = fileChooser.showOpenDialog(null);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+
+        try (FileInputStream fis = new FileInputStream(selectedFile)) {
+            // Đọc file ảnh thành mảng byte
+            byte[] imageBytes = new byte[(int) selectedFile.length()];
+            fis.read(imageBytes);
+
+            // Lưu ảnh vào cơ sở dữ liệu
+            saveImageToDatabase(selectedBookId, imageBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi đọc file ảnh: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_jButton6ActionPerformed
+    private void saveImageToDatabase(int bookId, byte[] imageBytes) {
+    String url = "jdbc:mysql://localhost:3306/sach";
+    String username = "root";
+    String password = "112233";
+
+    String sql = "UPDATE sach SET anh = ? WHERE id = ?"; // Cập nhật ảnh của quyển sách theo ID
+
+    try (Connection conn = DriverManager.getConnection(url, username, password);
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
+        // Set ảnh vào PreparedStatement
+        stmt.setBytes(1, imageBytes);
+        stmt.setInt(2, bookId);
+
+        // Thực hiện câu lệnh UPDATE
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(this, "Ảnh đã được thêm thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Không thể thêm ảnh vào quyển sách.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Lỗi khi lưu ảnh vào cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
