@@ -18,9 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import view.QuanLINguoiMuon;
 import view.TrangChuPanel;
-import view.QuanLiKhoSachPN;
+
 import view.QuanLiMuonSachPn;
-import view.QuanLiNhanVien;
+import view.ThongKe;
 
 
 public class ChuyenManHinhController {
@@ -77,7 +77,7 @@ public class ChuyenManHinhController {
                     node = new QuanLiMuonSachPn();
                     break;
                 case "quanlinhanvien":
-                    node = new QuanLiNhanVien();
+                    node = new ThongKe();
                     break;
                 case "quanlinguoimuon":
                     node = new QuanLINguoiMuon();
@@ -135,7 +135,7 @@ public class ChuyenManHinhController {
             } else {
                 // Đặt lại màu sắc cho các mục khác
                 item.getJlb().setBackground(new Color(255, 204, 51));
-                item.getJpn().setBackground(new Color(242,242,242));
+                item.getJpn().setBackground(new Color(255, 255, 153));
             }
         }
     }

@@ -101,7 +101,7 @@ public class Menu extends javax.swing.JFrame {
 
         jlbnhanvien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbnhanvien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbnhanvien.setText("Quản Lí Nhân Viên");
+        jlbnhanvien.setText("Thống Kê");
         jlbnhanvien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jpnnhanvienLayout = new javax.swing.GroupLayout(jpnnhanvien);
@@ -169,7 +169,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Quản Lí Thư Viện");
         jpn1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, -1));
 
-        getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 620));
+        getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 590));
 
         jPanelview.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -177,14 +177,14 @@ public class Menu extends javax.swing.JFrame {
         jPanelview.setLayout(jPanelviewLayout);
         jPanelviewLayout.setHorizontalGroup(
             jPanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
         jPanelviewLayout.setVerticalGroup(
             jPanelviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 590, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 890, 620));
+        getContentPane().add(jPanelview, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1010, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
