@@ -55,8 +55,9 @@ public class  SachDAO implements DAOinterfacee<Sach> {
                 String tensach = rs.getString("ten_sach");
                 int namxb = rs.getInt("nam_xuat_ban");
                 float gia = rs.getFloat("gia");
+                int soluong =rs.getInt("so_luong");
                 
-                Sach s = new Sach(id, tensach, namxb, gia);
+                Sach s = new Sach(id, tensach, namxb, gia,soluong);
                 sachList.add(s);
             }
         } catch (SQLException e) {
@@ -82,22 +83,26 @@ public class  SachDAO implements DAOinterfacee<Sach> {
     }
 
     public boolean updateBook(Sach sach) {
-        String sql = "UPDATE sach SET ten_sach = ?, nam_xuat_ban = ?, gia = ? WHERE id = ?";
+    String sql = "UPDATE sach SET ten_sach = ?, nam_xuat_ban = ?, gia = ?, so_luong = ? WHERE id = ?";
 
-        try (Connection con = jdbcUtil.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+    try (Connection con = jdbcUtil.getConnection();
+         PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-            pstmt.setString(1, sach.getTenSach());
-            pstmt.setInt(2, sach.getNamXuatBan());
-            pstmt.setDouble(3, sach.getGia());
-            pstmt.setInt(4, sach.getId());
+        // Cài đặt giá trị cho các tham số trong câu lệnh SQL
+        pstmt.setString(1, sach.getTenSach()); // Set tên sách
+        pstmt.setInt(2, sach.getNamXuatBan()); // Set năm xuất bản
+        pstmt.setDouble(3, sach.getGia()); // Set giá
+        pstmt.setInt(4, sach.getSoluong()); // Set số lượng
+        pstmt.setInt(5, sach.getId()); // Set ID sách (mặc dù đã có ID nhưng vẫn cần cho WHERE)
 
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+        // Thực hiện câu lệnh SQL và trả về kết quả (có cập nhật thành công hay không)
+        return pstmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
+
 
     public boolean save(Sach sach) {
         String sql = "INSERT INTO sach (id, ten_sach, nam_xuat_ban, gia, tac_gia, nha_xuat_ban, the_loai, so_luong) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

@@ -4,6 +4,15 @@
  */
 package view;
 
+import DAO.NguoiMuonDAO;
+import DAO.SachDAO;
+import entity.NguoiMuon;
+import entity.Sach;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Mark
@@ -15,6 +24,39 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
      */
     public QuanLINguoiMuon() {
         initComponents();
+        getall();
+    }
+    public void getall() {
+        NguoiMuonDAO dao = new NguoiMuonDAO();
+        List<NguoiMuon> NguoiMuonList = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
+        DefaultTableModel model = new DefaultTableModel();
+        
+        // Thêm cột vào model
+        model.addColumn("Tên Người Mượn");
+        model.addColumn("Quê Quán");
+        model.addColumn("Số Điện Thoại");
+        model.addColumn("Gmail");
+        model.addColumn("Trạng Thái");
+        model.addColumn("id");
+// Thêm cột Giá nếu có
+
+        // Thêm dữ liệu vào model
+        for (NguoiMuon n : NguoiMuonList) {
+            model.addRow(new Object[]{
+                 
+                n.getTenNguoiMuon(),           // ID của sách
+                n.getQueQuan(),
+                n.getSdt(),
+                n.getGmail(),
+                n.getTrangThai(),
+                n.getIdNguoiMuon()
+
+               
+                          // Giá
+            });
+        }
+
+        jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
     }
 
     /**
@@ -46,6 +88,12 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 204, 204));
 
@@ -55,20 +103,30 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tên người mượn", "Quê quán ", "Số điện thoại", "Gmail", "Trạng thái"
+                "Tên người mượn", "Quê quán ", "Số điện thoại", "Gmail", "Trạng thái", "id"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Sửa ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Xoá");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Thêm ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +177,12 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
 
         jLabel7.setText("Ngày trả");
 
+        jLabel8.setText("id");
+
+        jLabel9.setText("số lượng mượn");
+
+        jLabel10.setText("id sách");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -126,18 +190,23 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField7)
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
@@ -145,14 +214,19 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField5)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jTextField8))))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,15 +250,23 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -192,9 +274,9 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +292,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
@@ -221,11 +303,185 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+    try {
+    // Lấy giá trị từ các trường JTextField và loại bỏ khoảng trắng đầu/cuối
+    int id = Integer.parseInt(jTextField7.getText().trim());
+    String ten = jTextField1.getText().trim();
+    String quequan = jTextField2.getText().trim();
+    String sdt = jTextField3.getText().trim();
+    String gmail = jTextField4.getText().trim();
+    int idsach = Integer.parseInt(jTextField9.getText().trim());
+    
+    // Chuyển đổi từ String sang LocalDate
+    String ngaymuonStr = jTextField5.getText().trim();
+    String ngaytraStr = jTextField6.getText().trim();
+    int soluongmuon = Integer.parseInt(jTextField8.getText().trim()); // Chuyển đổi số lượng mượn từ JTextField
+
+    // Khởi tạo LocalDate từ chuỗi nhập vào
+    LocalDate ngaymuon = null;
+    LocalDate ngaytra = null;
+
+    // Kiểm tra và chuyển đổi ngày mượn
+    if (!ngaymuonStr.isEmpty()) {
+        ngaymuon = LocalDate.parse(ngaymuonStr); // Chuyển đổi từ String thành LocalDate
+    }
+
+    // Kiểm tra và chuyển đổi ngày trả (nếu có)
+    if (!ngaytraStr.isEmpty()) {
+        ngaytra = LocalDate.parse(ngaytraStr); // Chuyển đổi từ String thành LocalDate
+    }
+
+    // Tạo đối tượng DAO
+    NguoiMuonDAO dao = new NguoiMuonDAO();
+    SachDAO sachdao = new SachDAO();
+    
+    // Tìm quyển sách theo ID
+    Sach sach = sachdao.findById(idsach);
+    
+    // Kiểm tra xem sách có đủ số lượng hay không
+    if (sach != null && sach.getSoluong() >= soluongmuon) {
+        // Tìm người mượn theo ID
+        NguoiMuon nguoi = dao.findById(id);
+
+        if (nguoi == null) {
+            // Nếu người mượn không tồn tại, tạo đối tượng mới
+            nguoi = new NguoiMuon(ten, ngaymuon, ngaytra, quequan, sdt, gmail, soluongmuon);
+
+            // Lưu người mượn mới vào cơ sở dữ liệu
+            boolean saved = dao.save(nguoi);
+            
+            if (saved) {
+                // Sau khi lưu người mượn, giảm số lượng sách
+                sach.setSoluong(sach.getSoluong() - soluongmuon);
+                
+                // Cập nhật số lượng sách vào cơ sở dữ liệu
+                sachdao.updateBook(sach);
+                
+                JOptionPane.showMessageDialog(null, "Thêm người mượn thành công!");
+                getall(); // Cập nhật giao diện với thông tin mới
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm người mượn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "ID người mượn đã tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        // Nếu sách không đủ số lượng
+        JOptionPane.showMessageDialog(null, "Sách không đủ số lượng để mượn!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID và số lượng mượn!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+} catch (DateTimeParseException e) {
+    JOptionPane.showMessageDialog(null, "Vui lòng nhập ngày hợp lệ cho ngày mượn và ngày trả!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+} catch (Exception e) {
+    e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+    JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+}
+
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Lấy giá trị từ các trường JTextField và loại bỏ khoảng trắng đầu/cuối
+        int id = Integer.parseInt(jTextField7.getText().trim());
+        String ten = jTextField1.getText().trim();
+        String quequan = jTextField2.getText().trim();
+        String sdt = jTextField3.getText().trim();
+        String gmail = jTextField4.getText().trim();
+        
+        // Chuyển đổi từ String sang LocalDate
+        String ngaymuonStr = jTextField5.getText().trim();
+        String ngaytraStr = jTextField6.getText().trim();
+        int soluongmuon = Integer.parseInt(jTextField8.getText().trim()); 
+        // Khởi tạo LocalDate từ chuỗi nhập vào
+        LocalDate ngaymuon = null;
+        LocalDate ngaytra = null;
+
+        // Kiểm tra và chuyển đổi ngày mượn
+        if (!ngaymuonStr.isEmpty()) {
+            ngaymuon = LocalDate.parse(ngaymuonStr); // Chuyển đổi từ String thành LocalDate
+        }
+
+        // Kiểm tra và chuyển đổi ngày trả (nếu có)
+        if (!ngaytraStr.isEmpty()) {
+            ngaytra = LocalDate.parse(ngaytraStr); // Chuyển đổi từ String thành LocalDate
+        }
+
+        // Tạo đối tượng DAO
+        NguoiMuonDAO dao = new NguoiMuonDAO();
+
+        // Tìm người mượn theo ID
+        NguoiMuon nguoi = dao.findById(id);
+
+        if (nguoi != null) {
+            // Nếu người mượn đã tồn tại, cập nhật thông tin người mượn
+            nguoi.setTenNguoiMuon(ten);
+            nguoi.setNgayMuon(ngaymuon);
+            nguoi.setNgayTra(ngaytra);
+            nguoi.setQueQuan(quequan);
+            nguoi.setSdt(sdt);
+            nguoi.setGmail(gmail);
+            nguoi.setSoLuongMuon(soluongmuon);
+
+            boolean updated = dao.updateNguoiMuon(nguoi); // Cập nhật người mượn vào cơ sở dữ liệu
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Cập nhật người mượn thành công!");
+                getall(); // Cập nhật lại danh sách
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật người mượn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "ID không tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập ngày hợp lệ cho ngày mượn và ngày trả!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+        JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Lấy chỉ số của hàng được chọn trong JTable
+        int selectedRow = jTable1.getSelectedRow();
+
+        // Kiểm tra nếu không có dòng nào được chọn
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn người mượn từ bảng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Lấy ID từ cột đầu tiên của hàng đã chọn
+        int id = (int) jTable1.getValueAt(selectedRow, 5);
+
+        // Tạo đối tượng DAO
+        NguoiMuonDAO dao = new NguoiMuonDAO();
+
+        // Gọi hàm xóa
+        boolean deleted = dao.deleteNguoiMuon(id);
+
+        if (deleted) {
+            JOptionPane.showMessageDialog(null, "Xóa người mượn thành công!");
+            getall(); // Cập nhật lại danh sách sau khi xóa
+        } else {
+            JOptionPane.showMessageDialog(null, "Xóa người mượn thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+        JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,12 +489,15 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -249,5 +508,8 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

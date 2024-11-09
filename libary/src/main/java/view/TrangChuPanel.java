@@ -44,7 +44,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
         model.addColumn("ID");
         model.addColumn("Tên Sách");
         model.addColumn("Năm Xuất Bản");
-        model.addColumn("Giá"); // Thêm cột Giá nếu có
+        model.addColumn("Giá");
+        model.addColumn("Số Lượng");// Thêm cột Giá nếu có
 
         // Thêm dữ liệu vào model
         for (Sach book : sachList) {
@@ -53,7 +54,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 book.getTenSach(),      // Tên sách
                
                 book.getNamXuatBan(),   // Năm xuất bản
-                book.getGia()           // Giá
+                book.getGia(), 
+                book.getSoluong()// Giá
             });
         }
 
@@ -101,13 +103,13 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

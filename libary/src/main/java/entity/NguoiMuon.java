@@ -20,18 +20,38 @@ public class NguoiMuon {
     private String trangThai;
     private int soLuongMuon;
     List<Sach> sach ;
+    private String queQuan;
+    private String sdt;
+    private String Gmail;
 
     // Constructor
 
-    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String trangThai, int soLuongMuon, List<Sach> sach) {
+    
+    
+    
+
+    public NguoiMuon(String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String queQuan, String sdt, String Gmail,int soLuongMuon) {
+        this.tenNguoiMuon = tenNguoiMuon;
+        this.ngayMuon = ngayMuon;
+        this.ngayTra = ngayTra;
+        this.queQuan = queQuan;
+        this.sdt = sdt;
+        this.Gmail = Gmail;
+        this.soLuongMuon=soLuongMuon;
+    }
+    
+    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String trangThai, int soLuongMuon, String queQuan, String sdt, String Gmail) {
         this.idNguoiMuon = idNguoiMuon;
         this.tenNguoiMuon = tenNguoiMuon;
         this.ngayMuon = ngayMuon;
         this.ngayTra = ngayTra;
         this.trangThai = trangThai;
         this.soLuongMuon = soLuongMuon;
-        this.sach = sach;
+        this.queQuan = queQuan;
+        this.sdt = sdt;
+        this.Gmail = Gmail;
     }
+
     public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String trangThai, int soLuongMuon) {
     this.idNguoiMuon = idNguoiMuon;
     this.tenNguoiMuon = tenNguoiMuon;
@@ -39,8 +59,32 @@ public class NguoiMuon {
     this.ngayTra = ngayTra;
     this.trangThai = trangThai;
     this.soLuongMuon = soLuongMuon;
-    this.sach = new ArrayList<>(); // Khởi tạo danh sách rỗng
+    // Các trường khác như 'queQuan', 'sdt', 'Gmail' có thể được bỏ qua hoặc set giá trị mặc định nếu cần
 }
+
+    public String getQueQuan() {
+        return queQuan;
+    }
+
+    public void setQueQuan(String queQuan) {
+        this.queQuan = queQuan;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getGmail() {
+        return Gmail;
+    }
+
+    public void setGmail(String Gmail) {
+        this.Gmail = Gmail;
+    }
 
 
     public List<Sach> getSach() {

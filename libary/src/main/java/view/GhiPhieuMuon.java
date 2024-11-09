@@ -75,7 +75,7 @@ public class GhiPhieuMuon extends javax.swing.JPanel {
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 150, 161));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 150, 30));
         jPanel5.add(jScrollBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, 160));
 
         jLabel4.setText("Thông tin sách");

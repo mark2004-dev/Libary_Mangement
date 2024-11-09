@@ -64,6 +64,13 @@
             this.soluong = soluong;
         }
 
+        public Sach(int id, String tensach, int namxb, double gia, int soluong) {
+        this.id = id;
+        this.tenSach = tensach;
+        this.namXuatBan = namxb;
+        this.gia = gia;
+        this.soluong = soluong;
+    }
         public Sach(int id, String tenSach, int namXuatBan, double gia, String tacgia, String nhaxb, String theloai, int soluong, byte[] anh) {
             this.id = id;
             this.tenSach = tenSach;
@@ -88,7 +95,8 @@
             this.nhaxb = nhaxb;
             this.theloai = theloai;
         }
-
+        
+        
         public String getTacgia() {
             return tacgia;
         }
@@ -146,7 +154,13 @@
         public void setGia(double gia) {
             this.gia = gia;
         }
-
+        public int getSoLuong() {
+            return soluong;
+        }
+        public void setSoLuong(int soluong) {
+            this.soluong = soluong;
+        }
+        
         @Override
         public String toString() {
             return "Sach{" +
