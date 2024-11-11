@@ -20,6 +20,8 @@ import view.QuanLINguoiMuon;
 import view.TrangChuPanel;
 
 import view.QuanLiMuonSachPn;
+import view.QuanLiNhanVien;
+import view.QuanLiTaiKhoan;
 import view.ThongKe;
 
 
@@ -76,13 +78,18 @@ public class ChuyenManHinhController {
                 case "quanlimuonsach":
                     node = new QuanLiMuonSachPn();
                     break;
-                case "quanlinhanvien":
+                case "thongke":
                     node = new ThongKe();
                     break;
                 case "quanlinguoimuon":
                     node = new QuanLINguoiMuon();
                     break;
-//               
+                case "quanlinhnvien":
+                    node = new QuanLiNhanVien();
+                    break;
+                 case "quanlitaikhoan":
+                    node = new QuanLiTaiKhoan();
+                    break;
                 default:
                     node = new TrangChuPanel();
                     break;
