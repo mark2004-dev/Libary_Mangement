@@ -126,30 +126,67 @@ public class  SachDAO implements DAOinterfacee<Sach> {
         }
     }
 
-    public List<Sach> findByName(String name) {
-        List<Sach> sachList = new ArrayList<>();
-        String sql = "SELECT * FROM sach WHERE ten_sach LIKE ?";
+    public List<Sach> findByAttributes(Integer id, String ten, Integer namXuatBan, Double gia) {
+    List<Sach> sachList = new ArrayList<>();
+    StringBuilder sql = new StringBuilder("SELECT * FROM sach WHERE 1=1");
 
-        try (Connection con = jdbcUtil.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setString(1, "%" + name + "%");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String tenSach = rs.getString("ten_sach");
-                int namXuatBan = rs.getInt("nam_xuat_ban");
-                double gia = rs.getDouble("gia");
-
-                Sach sach = new Sach(id, tenSach, namXuatBan, gia);
-                sachList.add(sach);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return sachList;
+    // Thêm điều kiện tìm kiếm vào câu truy vấn nếu tham số không null
+    if (id != null) {
+        sql.append(" AND id = ?");
     }
+    if (ten != null) {
+        sql.append(" AND ten_sach LIKE ?");
+    }
+    if (namXuatBan != null) {
+        sql.append(" AND nam_xuat_ban = ?");
+    }
+    if (gia != null) {
+        sql.append(" AND gia = ?");
+    }
+
+    try (Connection con = jdbcUtil.getConnection();
+         PreparedStatement stmt = con.prepareStatement(sql.toString())) {
+
+        int index = 1;
+
+        // Thiết lập giá trị cho các tham số trong câu truy vấn
+        if (id != null) {
+            stmt.setInt(index++, id);
+        }
+        if (ten != null) {
+            stmt.setString(index++, "%" + ten + "%");
+        }
+        if (namXuatBan != null) {
+            stmt.setInt(index++, namXuatBan);
+        }
+        if (gia != null) {
+            stmt.setDouble(index++, gia);
+        }
+
+        System.out.println("SQL Query: " + stmt.toString()); // In ra câu truy vấn để kiểm tra
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            int bookId = rs.getInt("id");
+            String bookName = rs.getString("ten_sach");
+            int bookNamXuatBan = rs.getInt("nam_xuat_ban");
+            double bookGia = rs.getDouble("gia");
+
+            // Giả định lớp Sach có constructor nhận các tham số này
+            Sach sach = new Sach(bookId, bookName, bookNamXuatBan, bookGia);
+            sachList.add(sach);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return sachList;
+}
+
+
+
+
+
 
     @Override
     public Sach findByIdAndPassWork(Sach t) {
@@ -157,6 +194,32 @@ public class  SachDAO implements DAOinterfacee<Sach> {
     }
 
     public boolean delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         String sql = "DELETE FROM sach WHERE id = ?";
+
+    try (Connection con = jdbcUtil.getConnection();
+         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+        pstmt.setInt(1, id);
+
+        return pstmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+    }
+    
+    public int getMaxId() {
+    String sql = "SELECT MAX(id) FROM sach";
+    try (Connection con = jdbcUtil.getConnection();
+         PreparedStatement stmt = con.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        if (rs.next()) {
+            return rs.getInt(1); // Lấy ID lớn nhất
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return 0; // Nếu không có sách nào, trả về 0
+}   
 }
