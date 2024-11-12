@@ -239,6 +239,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, 380));
 
         jButton7.setText("Xuất file Exel");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -487,6 +492,10 @@ private void openChiTietSach(int idSach) {
         }
     }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
     private void saveImageToDatabase(int bookId, byte[] imageBytes) {
     String url = "jdbc:mysql://localhost:3306/sach";
     String username = "root";

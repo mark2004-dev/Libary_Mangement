@@ -18,13 +18,18 @@ public class nguoidung {
     public nguoidung() {
     }
 
-    public nguoidung(String tentk, String email, String matkhau, String sodienthoai) {
+    public nguoidung(int manguoidung, String email, String matkhau, String sodienthoai) {
+        this.manguoidung = manguoidung;
+        this.email = email;
+        this.matkhau = matkhau;
+        this.sodienthoai = sodienthoai;
+    }
+public nguoidung( String tentk, String email, String matkhau, String sodienthoai) {
         this.tentk = tentk;
         this.email = email;
         this.matkhau = matkhau;
         this.sodienthoai = sodienthoai;
     }
-
     public nguoidung(int manguoidung, String tentk, String email, String matkhau, String sodienthoai) {
         this.manguoidung = manguoidung;
         this.tentk = tentk;
@@ -33,6 +38,7 @@ public class nguoidung {
         this.sodienthoai = sodienthoai;
     }
 
+    
     public int getManguoidung() {
         return manguoidung;
     }

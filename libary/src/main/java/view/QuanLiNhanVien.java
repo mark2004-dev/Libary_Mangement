@@ -4,6 +4,12 @@
  */
 package view;
 
+import DAO.NhanVienDao;
+import entity.NhanVien;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mark
@@ -15,6 +21,34 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
      */
     public QuanLiNhanVien() {
         initComponents();
+        getall();
+    }
+
+    public void getall() {
+        NhanVienDao dao = new NhanVienDao();
+        List<NhanVien> list = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
+        DefaultTableModel model = new DefaultTableModel();
+
+        // Thêm cột vào model
+        model.addColumn("ID");
+        model.addColumn("Tên nv");
+        model.addColumn("Giới Tính");
+        model.addColumn("địa chỉ");
+        model.addColumn("luong co ban");// Thêm cột Giá nếu có
+
+        // Thêm dữ liệu vào model
+        for (NhanVien nv : list) {
+            model.addRow(new Object[]{
+                nv.getIdNhanVien(), // ID của sách
+                nv.getHoTen(), // Tên sách
+                nv.getGioiTinh(),
+                nv.getDiaChi(),
+                nv.getLuongCoBan()
+
+            });
+        }
+
+        jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
     }
 
     /**
@@ -37,6 +71,10 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -60,6 +98,10 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setText("gioi tinh ");
+
+        jLabel7.setText("luong co ban");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -73,23 +115,28 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
                                 .addComponent(jLabel2))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4))
-                                    .addComponent(jLabel3))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel4))
+                                        .addComponent(jLabel3))
+                                    .addComponent(jLabel7))))
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField4)
                     .addComponent(jTextField7)
                     .addComponent(jTextField1)
                     .addComponent(jTextField2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(jTextField5))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -118,7 +165,15 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
                                 .addComponent(jLabel5)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
-                        .addContainerGap(45, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jButton2.setText("Sửa ");
@@ -191,33 +246,143 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 107, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        try {
+        // Lấy dữ liệu từ các JTextField và chuyển đổi kiểu dữ liệu khi cần thiết
+        int manv = Integer.parseInt(jTextField7.getText().trim()); // ID nhân viên
+        String ten = jTextField1.getText().trim();
+        String gmail = jTextField2.getText().trim();
+        String diachi = jTextField3.getText().trim();
+        String gioitinh = jTextField4.getText().trim();
+        Double luong = Double.parseDouble(jTextField5.getText().trim());
 
+        // Kiểm tra các trường nhập liệu có bị bỏ trống hay không
+        if (ten.isEmpty() || gmail.isEmpty() || diachi.isEmpty() || gioitinh.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return; // Dừng hàm nếu có trường nhập liệu bị trống
+        }
+
+        // Kiểm tra nếu nhân viên tồn tại trong cơ sở dữ liệu
+        NhanVienDao dao = new NhanVienDao();
+        NhanVien nhanvien = dao.findById(manv); // Tìm nhân viên theo ID
+
+        if (nhanvien != null) {
+            // Nếu nhân viên tồn tại, cập nhật thông tin của nhân viên
+            nhanvien.setHoTen(ten);
+            nhanvien.setGioiTinh(gioitinh);
+            nhanvien.setDiaChi(diachi);
+            nhanvien.setEmail(gmail);
+            nhanvien.setLuongCoBan(luong);
+
+            // Gọi hàm update để cập nhật thông tin nhân viên vào cơ sở dữ liệu
+            boolean updated = dao.update(nhanvien); // Hàm update sẽ cập nhật nhân viên vào CSDL
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Cập nhật thông tin nhân viên thành công!");
+                getall(); // Cập nhật danh sách nhân viên trong giao diện
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật thông tin nhân viên thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // Nếu nhân viên không tồn tại
+            JOptionPane.showMessageDialog(null, "ID nhân viên không tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        // Xử lý lỗi khi nhập sai định dạng số (chẳng hạn ID và Lương)
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID và lương!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        // Xử lý các lỗi khác và hiển thị thông báo lỗi chung
+        e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+        JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void deleteSelected() {
+        // Lấy hàng được chọn
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một quyển sách để xóa!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
+        // Lấy ID từ hàng được chọn
+        int id = (int) jTable1.getValueAt(selectedRow, 0); // Giả sử ID là ở cột 0
+
+        // Tạo đối tượng SachDAO và gọi phương thức xóa
+        NhanVienDao dao = new NhanVienDao();
+        boolean isDeleted = dao.delete(id);
+
+        if (isDeleted) {
+            JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
+            // Xóa hàng khỏi bảng
+            ((DefaultTableModel) jTable1.getModel()).removeRow(selectedRow);
+        } else {
+            JOptionPane.showMessageDialog(this, "ID sách không tồn tại hoặc xóa thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-      
+    deleteSelected();
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+
+       try {
+        // Lấy dữ liệu từ các JTextField
+        int manv = Integer.parseInt(jTextField7.getText().trim()); // ID nhân viên
+        String ten = jTextField1.getText().trim();
+        String gmail = jTextField2.getText().trim();
+        String diachi = jTextField3.getText().trim();
+        String gioitinh = jTextField4.getText().trim();
+        Double luong = Double.parseDouble(jTextField5.getText().trim());
+
+        // Kiểm tra các trường nhập liệu
+        if (ten.isEmpty() || gmail.isEmpty() || diachi.isEmpty() || gioitinh.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Kiểm tra nếu nhân viên đã tồn tại trong cơ sở dữ liệu
+        NhanVienDao dao = new NhanVienDao();
+        NhanVien nhanvien = dao.findById(manv); // Tìm nhân viên theo ID
+
+        if (nhanvien == null) {
+            // Nếu nhân viên chưa tồn tại, tạo mới và lưu vào cơ sở dữ liệu
+            nhanvien = new NhanVien(manv, ten, gioitinh, diachi, "", gmail, luong);
+            boolean saved = dao.save(nhanvien); // Gọi hàm save để thêm nhân viên mới
+            if (saved) {
+                JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
+                getall(); // Cập nhật danh sách nhân viên
+            } else {
+                JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "ID nhân viên đã tồn tại", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID và lương!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        e.printStackTrace(); // In ra lỗi cho quá trình gỡ lỗi
+        JOptionPane.showMessageDialog(null, "Đã có lỗi xảy ra, vui lòng thử lại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -235,6 +400,8 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -243,6 +410,8 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

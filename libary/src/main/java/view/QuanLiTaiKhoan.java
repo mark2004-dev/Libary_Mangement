@@ -4,6 +4,12 @@
  */
 package view;
 
+import DAO.nguoidungDAO;
+import entity.nguoidung;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mark
@@ -15,6 +21,34 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
      */
     public QuanLiTaiKhoan() {
         initComponents();
+        getall();
+    }
+
+    public void getall() {
+        nguoidungDAO dao = new nguoidungDAO();
+        List<nguoidung> List = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("id");
+        // Thêm cột vào model
+        model.addColumn("Tên Tài Khoản");
+        model.addColumn("Mật Khẩu");
+        model.addColumn("Gmail");
+        model.addColumn("Sdt");
+
+        // Thêm dữ liệu vào model
+        for (nguoidung nguoi : List) {
+            model.addRow(new Object[]{
+                nguoi.getManguoidung(),
+                nguoi.getTentk(), // ID của sách
+                nguoi.getMatkhau(), // Tên sách
+
+                nguoi.getEmail(), // Năm xuất bản
+                nguoi.getSodienthoai()
+
+            });
+        }
+
+        jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
     }
 
     /**
@@ -41,8 +75,9 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 204, 204));
 
@@ -50,7 +85,7 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quản Lí Người Mượn");
+        jLabel1.setText("Quản Lí Tai Khoan");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,10 +139,11 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 196, -1));
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 190, -1));
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 196, -1));
-        jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 196, -1));
 
-        jLabel8.setText("Tên tài khoản");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 88, -1));
+        jLabel5.setText("tài khoản");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
+        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 150, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,21 +198,116 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+         int row = jTable1.getSelectedRow(); // Lấy chỉ số dòng được chọn
+    if (row == -1) {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một tài khoản để sửa.");
+        return;
+    }
+
     
+    // Bước 3: Điền thông tin vào các JTextField để người dùng có thể sửa
+    
+
+    // Bước 4: Khi nhấn nút "Sửa" (button2), thực hiện cập nhật vào CSDL
+    // Lấy các giá trị mới từ JTextField
+    String newTentk = jTextField4.getText();
+    String newMatkhau = jTextField1.getText();
+    String newEmail = jTextField2.getText();
+    String newSodienthoai = jTextField3.getText();
+
+    // Bước 5: Kiểm tra các trường không rỗng
+    if (newTentk.isEmpty() || newMatkhau.isEmpty() || newEmail.isEmpty() || newSodienthoai.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
+
+    // Bước 6: Tạo đối tượng nguoidung mới và cập nhật các trường
+    nguoidung nguoiDung = new nguoidung();
+    nguoiDung.setManguoidung(Integer.parseInt(jTable1.getValueAt(row, 0).toString())); // Lấy ID từ bảng
+    nguoiDung.setTentk(newTentk);
+    nguoiDung.setMatkhau(newMatkhau);
+    nguoiDung.setEmail(newEmail);
+    nguoiDung.setSodienthoai(newSodienthoai);
+
+    // Bước 7: Cập nhật thông tin vào cơ sở dữ liệu
+    nguoidungDAO dao = new nguoidungDAO();
+    boolean ketQua = dao.update(nguoiDung);
+
+    // Bước 8: Thông báo kết quả
+    if (ketQua) {
+        JOptionPane.showMessageDialog(null, "Cập nhật thành công.");
+        getall(); // Cập nhật lại bảng
+    } else {
+        JOptionPane.showMessageDialog(null, "Cập nhật thất bại.");
+    }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-      
+        int row = jTable1.getSelectedRow(); // Lấy chỉ số dòng được chọn
+    if (row == -1) {
+        JOptionPane.showMessageDialog(null, "Vui lòng chọn một tài khoản để xóa.");
+        return;
+    }
 
-           
+    // Bước 2: Xác nhận hành động xóa
+    int confirm = JOptionPane.showConfirmDialog(null, 
+            "Bạn có chắc chắn muốn xóa tài khoản này?", 
+            "Xóa tài khoản", 
+            JOptionPane.YES_NO_OPTION);
+    if (confirm != JOptionPane.YES_OPTION) {
+        return; // Nếu người dùng không đồng ý xóa, thì thoát
+    }
+
+    // Bước 3: Lấy ID của người dùng từ bảng (từ cột 0)
+    int manguoidung = Integer.parseInt(jTable1.getValueAt(row, 0).toString());
+
+    // Bước 4: Xóa dữ liệu khỏi cơ sở dữ liệu
+    nguoidungDAO dao = new nguoidungDAO();
+    boolean ketQua = dao.delete(manguoidung); // Gọi phương thức xóa trong DAO
+
+    // Bước 5: Thông báo kết quả
+    if (ketQua) {
+        JOptionPane.showMessageDialog(null, "Xóa thành công.");
+        getall(); // Cập nhật lại bảng sau khi xóa
+    } else {
+        JOptionPane.showMessageDialog(null, "Xóa thất bại.");
+    }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-     
-          
-  
+String tenTaiKhoan = jTextField4.getText();  // txtTenTaiKhoan là JTextField cho tên tài khoản
+    String matKhau = jTextField1.getText();            // txtMatKhau là JTextField cho mật khẩu
+    String email = jTextField2.getText();                // txtEmail là JTextField cho email
+    String soDienThoai = jTextField3.getText();    // txtSoDienThoai là JTextField cho số điện thoại
+
+    // Kiểm tra nếu các trường bắt buộc không rỗng
+    if (tenTaiKhoan.isEmpty() || matKhau.isEmpty() || email.isEmpty() || soDienThoai.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
+
+    // Tạo đối tượng nguoidung mới và gán các giá trị
+    nguoidung nguoiDungMoi = new nguoidung();
+    nguoiDungMoi.setTentk(tenTaiKhoan);
+    nguoiDungMoi.setMatkhau(matKhau);
+    nguoiDungMoi.setEmail(email);
+    nguoiDungMoi.setSodienthoai(soDienThoai);
+
+    // Thêm người dùng vào cơ sở dữ liệu thông qua DAO
+    nguoidungDAO dao = new nguoidungDAO();
+    boolean isAdded = dao.save(nguoiDungMoi);  // Giả sử bạn có phương thức add trong nguoidungDAO để thêm người dùng mới
+
+    // Thông báo kết quả thêm mới
+    if (isAdded) {
+        JOptionPane.showMessageDialog(null, "Thêm mới người dùng thành công.");
+        getall();  // Cập nhật lại danh sách người dùng sau khi thêm mới
+    } else {
+        JOptionPane.showMessageDialog(null, "Lỗi khi thêm người dùng.");
+    }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -189,7 +320,8 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -198,6 +330,6 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
