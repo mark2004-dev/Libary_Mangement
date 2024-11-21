@@ -5,10 +5,12 @@
 package view;
 
 import DAO.SachDAO;
+import com.mysql.cj.result.Row;
 import entity.Sach;
 import java.awt.Color;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,9 +21,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
+
+import org.apache.poi.ss.usermodel.Sheet; // For creating sheets
+import org.apache.poi.ss.usermodel.Workbook; // For creating workbooks
+import org.apache.poi.xssf.usermodel.XSSFWorkbook; // For .xlsx files
+import javax.swing.JFileChooser; // For file chooser dialog
+import javax.swing.filechooser.FileNameExtensionFilter; // For file filter
+import java.io.FileOutputStream; // For writing to files
+import java.io.IOException; // For handling IO exceptions
+import javax.swing.JOptionPane; // For showing dialog messages
+import javax.swing.table.DefaultTableModel;
+import com.mysql.cj.result.Row; // This is incorrect for Apache POI
 /**
  *
  * @author Mark
@@ -668,6 +679,51 @@ try {
         }
     }
 
+//   private void exportToExcel() {
+//    try {
+//        // Create a new workbook and a sheet
+//        Workbook workbook = new XSSFWorkbook();
+//        Sheet sheet = workbook.createSheet("Books");
+//
+//        // Create header row
+//        Row headerRow = (Row) sheet.createRow(0);
+//        headerRow.createCell(0).setCellValue("ID");
+//        headerRow.createCell(1).setCellValue("Tên Sách");
+//        headerRow.createCell(2).setCellValue("Năm Xuất Bản");
+//        headerRow.createCell(3).setCellValue("Giá");
+//
+//        // Get the table model and add data to the sheet
+//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//        for (int i = 0; i < model.getRowCount(); i++) {
+//            Row row = (Row) sheet.createRow(i + 1); // Create a new row for each data entry
+//            for (int j = 0; j < model.getColumnCount(); j++) {
+//                // Create a cell in the row and set its value
+//                row.createCell(j).setCellValue(model.getValueAt(i, j).toString());
+//            }
+//        }
+//
+//        // Write the output to a file
+//        JFileChooser fileChooser = new JFileChooser();
+//        fileChooser.setDialogTitle("Save Excel File");
+//        fileChooser.setFileFilter(new FileNameExtensionFilter("Excel Files", "xlsx"));
+//        int userSelection = fileChooser.showSaveDialog(null);
+//        if (userSelection == JFileChooser.APPROVE_OPTION) {
+//            File fileToSave = fileChooser.getSelectedFile();
+//            if (!fileToSave.getName().endsWith(".xlsx")) {
+//                fileToSave = new File(fileToSave.getAbsolutePath() + ".xlsx");
+//            }
+//            FileOutputStream outputStream = new FileOutputStream(fileToSave);
+//            workbook.write(outputStream);
+//            outputStream.close();
+//            workbook.close();
+//            JOptionPane.showMessageDialog(this, "Exported successfully to " + fileToSave.getAbsolutePath());
+//        }
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//        JOptionPane.showMessageDialog(this, "Error while exporting: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    }
+//}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
