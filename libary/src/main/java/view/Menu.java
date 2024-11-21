@@ -91,7 +91,6 @@ public class Menu extends javax.swing.JFrame {
         jlbtrangchu.setBackground(new java.awt.Color(0, 153, 153));
         jlbtrangchu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtrangchu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbtrangchu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/house.png"))); // NOI18N
         jlbtrangchu.setText("Trang Chủ");
 
         javax.swing.GroupLayout jpntrangchuLayout = new javax.swing.GroupLayout(jpntrangchu);

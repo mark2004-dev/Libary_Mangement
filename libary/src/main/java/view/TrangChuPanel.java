@@ -656,7 +656,7 @@ try {
     private void saveImageToDatabase(int bookId, byte[] imageBytes) {
         String url = "jdbc:mysql://localhost:3306/sach";
         String username = "root";
-        String password = "12345678";
+        String password = "112233";
 
         String sql = "UPDATE sach SET anh = ? WHERE id = ?"; // Cập nhật ảnh của quyển sách theo ID
 

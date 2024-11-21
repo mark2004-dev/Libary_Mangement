@@ -266,6 +266,38 @@ public class nguoidungDAO implements DAOinterfacee<nguoidung> {
     public nguoidung findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    public boolean updatetk(nguoidung ng) {
+        boolean ketQua = false;
+    try {
+        // Bước 1: Tạo kết nối đến CSDL
+        Connection con = jdbcUtil.getConnection();
+
+        // Bước 2: Tạo câu lệnh SQL để cập nhật thông tin người dùng
+        String sql = "UPDATE nguoidung SET matkhau=? where tentk=?";
+        PreparedStatement st = con.prepareStatement(sql);
+
+        // Bước 3: Thiết lập giá trị cho các tham số trong câu lệnh SQL
+        
+        st.setString(1, ng.getMatkhau());
+        st.setString(2, ng.getTentk());
+        
+      
+
+        // Bước 4: Thực thi câu lệnh SQL
+        int rowsAffected = st.executeUpdate();
+
+        // Kiểm tra nếu có bản ghi nào được cập nhật
+        if (rowsAffected > 0) {
+            ketQua = true;
+        }
+
+        // Đóng kết nối
+        jdbcUtil.closeConnection(con);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return ketQua;
+    }
 }
 
     
