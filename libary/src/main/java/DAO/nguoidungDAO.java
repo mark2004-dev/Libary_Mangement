@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import static view.PasswordUtils.hashPassword;
 import view.jdbcUtil;
 
 /**
@@ -31,10 +32,10 @@ public class nguoidungDAO implements DAOinterfacee<nguoidung> {
             String sql = "SELECT * FROM nguoidung WHERE tentk=? and matkhau=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, t.getTentk());
-            st.setString(2, t.getMatkhau());
-
+            String hashedPassword = hashPassword(t.getMatkhau());
+             st.setString(2, hashedPassword);
             // Bước 3: thực thi câu lệnh SQL
-            System.out.println(sql);
+         
             ResultSet rs = st.executeQuery();
 
             // Bước 4:
