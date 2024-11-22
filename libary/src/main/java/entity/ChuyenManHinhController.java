@@ -21,6 +21,8 @@ import view.TrangChuPanel;
 import view.QuanLiMuonSachPn;
 import view.QuanLiNhanVien;
 import view.QuanLiTaiKhoan;
+import view.change_password;
+import view.doimatkhau;
 
 
 
@@ -85,6 +87,9 @@ public class ChuyenManHinhController {
                     break;
                  case "quanlitaikhoan":
                     node = new QuanLiTaiKhoan();
+                    break;
+                case "doimk":
+                    node = new change_password();
                     break;
                 default:
                     node = new TrangChuPanel();

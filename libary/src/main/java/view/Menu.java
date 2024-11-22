@@ -31,6 +31,9 @@ public class Menu extends javax.swing.JFrame {
         lstdanhmuc.add(new danhmuc("quanlinguoimuon",jpnnguoimuon,jlbnguoimuon));
         lstdanhmuc.add(new danhmuc("quanlinhnvien",jpnhanvien,jlbnhanvien));
         lstdanhmuc.add(new danhmuc("quanlitaikhoan",jptaikhoan,jlbtaikhoan));
+        lstdanhmuc.add(new danhmuc("doimk",jdoimk,jlbdoimk));
+        
+        
         cmh.setEvent(lstdanhmuc);
         setLocationRelativeTo(null);
    }
@@ -58,6 +61,8 @@ public class Menu extends javax.swing.JFrame {
         jlbnhanvien = new javax.swing.JLabel();
         jptaikhoan = new javax.swing.JPanel();
         jlbtaikhoan = new javax.swing.JLabel();
+        jdoimk = new javax.swing.JPanel();
+        jlbdoimk = new javax.swing.JLabel();
         jPanelview = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,38 +80,35 @@ public class Menu extends javax.swing.JFrame {
         jpnmuonsach.setLayout(jpnmuonsachLayout);
         jpnmuonsachLayout.setHorizontalGroup(
             jpnmuonsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnmuonsachLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlbmuonsach, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlbmuonsach, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         jpnmuonsachLayout.setVerticalGroup(
             jpnmuonsachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlbmuonsach, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(jlbmuonsach, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jpn1.add(jpnmuonsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 170, 70));
+        jpn1.add(jpnmuonsach, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, 60));
 
-        jpntrangchu.setBackground(new java.awt.Color(0, 153, 153));
+        jpntrangchu.setBackground(new java.awt.Color(255, 255, 255));
 
         jlbtrangchu.setBackground(new java.awt.Color(0, 153, 153));
         jlbtrangchu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtrangchu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbtrangchu.setText("Trang Chủ");
+        jlbtrangchu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jpntrangchuLayout = new javax.swing.GroupLayout(jpntrangchu);
         jpntrangchu.setLayout(jpntrangchuLayout);
         jpntrangchuLayout.setHorizontalGroup(
             jpntrangchuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpntrangchuLayout.createSequentialGroup()
-                .addComponent(jlbtrangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(jlbtrangchu, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         jpntrangchuLayout.setVerticalGroup(
             jpntrangchuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlbtrangchu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jlbtrangchu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jpn1.add(jpntrangchu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 170, 60));
+        jpn1.add(jpntrangchu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 160, 60));
 
         jlbnguoimuon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbnguoimuon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -117,18 +119,14 @@ public class Menu extends javax.swing.JFrame {
         jpnnguoimuon.setLayout(jpnnguoimuonLayout);
         jpnnguoimuonLayout.setHorizontalGroup(
             jpnnguoimuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnnguoimuonLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlbnguoimuon, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlbnguoimuon, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         jpnnguoimuonLayout.setVerticalGroup(
             jpnnguoimuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnnguoimuonLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlbnguoimuon, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlbnguoimuon, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jpn1.add(jpnnguoimuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 170, 70));
+        jpn1.add(jpnnguoimuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 160, 60));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -144,22 +142,20 @@ public class Menu extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jpn1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 170, 40));
+        jpn1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 160, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Quản Lí Thư Viện");
-        jpn1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 160, -1));
+        jpn1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 25, 160, 70));
 
         jpnhanvien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -167,9 +163,9 @@ public class Menu extends javax.swing.JFrame {
         jlbnhanvien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbnhanvien.setText("Quản Lí Nhân Viên");
         jlbnhanvien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jpnhanvien.add(jlbnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 70));
+        jpnhanvien.add(jlbnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 60));
 
-        jpn1.add(jpnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 170, 70));
+        jpn1.add(jpnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 160, 60));
 
         jlbtaikhoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtaikhoan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -180,18 +176,25 @@ public class Menu extends javax.swing.JFrame {
         jptaikhoan.setLayout(jptaikhoanLayout);
         jptaikhoanLayout.setHorizontalGroup(
             jptaikhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jptaikhoanLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlbtaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jlbtaikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
         jptaikhoanLayout.setVerticalGroup(
             jptaikhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jptaikhoanLayout.createSequentialGroup()
-                .addComponent(jlbtaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(jlbtaikhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jpn1.add(jptaikhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 170, 60));
+        jpn1.add(jptaikhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 160, 60));
+
+        jdoimk.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlbdoimk.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlbdoimk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlbdoimk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/return1.png"))); // NOI18N
+        jlbdoimk.setText("Đổi mật khẩu");
+        jlbdoimk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jdoimk.add(jlbdoimk, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 40));
+
+        jpn1.add(jdoimk, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 160, 40));
 
         getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 620));
 
@@ -274,6 +277,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelview;
+    private javax.swing.JPanel jdoimk;
+    private javax.swing.JLabel jlbdoimk;
     private javax.swing.JLabel jlbmuonsach;
     private javax.swing.JLabel jlbnguoimuon;
     private javax.swing.JLabel jlbnhanvien;

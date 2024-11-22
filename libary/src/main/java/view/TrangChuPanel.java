@@ -33,6 +33,12 @@ import java.io.IOException; // For handling IO exceptions
 import javax.swing.JOptionPane; // For showing dialog messages
 import javax.swing.table.DefaultTableModel;
 import com.mysql.cj.result.Row; // This is incorrect for Apache POI
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 /**
  *
  * @author Mark
@@ -653,10 +659,32 @@ try {
         JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi sao chép sách!", "Lỗi", JOptionPane.ERROR_MESSAGE);
     } 
     }//GEN-LAST:event_jButton8ActionPerformed
-    private void saveImageToDatabase(int bookId, byte[] imageBytes) {
+
+    private void blurPanel() {
+    // Create a BufferedImage to draw the panel onto
+    BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2d = image.createGraphics();
+    this.paint(g2d); // Paint the current panel to the BufferedImage
+    g2d.dispose();
+
+    // Apply a blur filter to the image
+    float[] matrix = new float[25];
+    for (int i = 0; i < 25; i++) {
+        matrix[i] = 1.0f / 25.0f; // Simple averaging filter
+    }
+    Kernel kernel = new Kernel(5, 5, matrix);
+    ConvolveOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
+    BufferedImage blurredImage = op.filter(image, null);
+
+    // Create a JLabel to display the blurred image
+    JLabel blurredLabel = new JLabel(new ImageIcon(blurredImage));
+    blurredLabel.setBounds(0, 0, this.getWidth(), this.getHeight());
+    this.add(blurredLabel);
+    this.repaint();
+}    private void saveImageToDatabase(int bookId, byte[] imageBytes) {
         String url = "jdbc:mysql://localhost:3306/sach";
         String username = "root";
-        String password = "112233";
+        String password = "12345678";
 
         String sql = "UPDATE sach SET anh = ? WHERE id = ?"; // Cập nhật ảnh của quyển sách theo ID
 
