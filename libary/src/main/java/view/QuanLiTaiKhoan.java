@@ -234,7 +234,7 @@ public class QuanLiTaiKhoan extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin.");
         return;
     }
-     String hashPassWord=PasswordUtils.hashPassword(newEmail);
+     String hashPassWord=PasswordUtils.hashPassword(newMatkhau);
     // Bước 6: Tạo đối tượng nguoidung mới và cập nhật các trường
     nguoidung nguoiDung = new nguoidung();
     nguoiDung.setManguoidung(Integer.parseInt(jTable1.getValueAt(row, 0).toString())); // Lấy ID từ bảng
