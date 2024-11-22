@@ -40,12 +40,14 @@ public class NhanVienDao {
                 int id = rs.getInt("idNhanVien");
                 String ten = rs.getString("hoTen");
                 String gioiTinh = rs.getString("gioiTinh");
-                String sdt = rs.getString("sdt");
+            
                 String diaChi = rs.getString("diaChi");
-                String email = rs.getString("email");
+                
                 Double luongCoBan = rs.getDouble("luongCoBan");
-                NhanVien s = new NhanVien(id, ten, gioiTinh, sdt, diaChi, email, luongCoBan);
+                NhanVien s = new NhanVien(id, ten, gioiTinh,  diaChi, luongCoBan);
                 NhanViens.add(s);
+                System.out.println("ID: " + id + ", Tên: " + ten + ", Giới tính: " + gioiTinh + 
+        ", Địa chỉ: " + diaChi + ", Lương cơ bản: " + luongCoBan);
             }
 
             // Bước 5:

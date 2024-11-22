@@ -38,14 +38,13 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
 
         // Thêm dữ liệu vào model
         for (NhanVien nv : list) {
-            model.addRow(new Object[]{
-                nv.getIdNhanVien(), // ID của sách
-                nv.getHoTen(), // Tên sách
-                nv.getGioiTinh(),
-                nv.getDiaChi(),
-                nv.getLuongCoBan()
-
-            });
+           model.addRow(new Object[]{
+    nv.getIdNhanVien(), // ID
+    nv.getHoTen(), // Tên
+    nv.getGioiTinh(), // Giới tính
+    nv.getDiaChi(), // Địa chỉ
+    nv.getLuongCoBan() // Lương cơ bản
+});
         }
 
         jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
@@ -84,6 +83,7 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0))));
         jPanel2.setForeground(new java.awt.Color(51, 0, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -191,13 +191,13 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -288,7 +288,7 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
         // Lấy hàng được chọn
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn một quyển sách để xóa!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Chọn nhân viên để xoá!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -300,11 +300,11 @@ public class QuanLiNhanVien extends javax.swing.JPanel {
         boolean isDeleted = dao.delete(id);
 
         if (isDeleted) {
-            JOptionPane.showMessageDialog(this, "Xóa sách thành công!");
+            JOptionPane.showMessageDialog(this, "xoá thành công nhân viên!");
             // Xóa hàng khỏi bảng
             ((DefaultTableModel) jTable1.getModel()).removeRow(selectedRow);
         } else {
-            JOptionPane.showMessageDialog(this, "ID sách không tồn tại hoặc xóa thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nhân viên không tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

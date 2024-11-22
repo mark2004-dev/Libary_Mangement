@@ -36,7 +36,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         model.addColumn("Quê Quán");
         model.addColumn("Số Điện Thoại");
         model.addColumn("Gmail");
-        model.addColumn("Trạng Thái");
+        
         model.addColumn("id");
 // Thêm cột Giá nếu có
 
@@ -48,7 +48,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
                 n.getQueQuan(),
                 n.getSdt(),
                 n.getGmail(),
-                n.getTrangThai(),
+               
                 n.getIdNguoiMuon()
 
                
@@ -114,6 +114,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 136, 77), 2));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -147,6 +148,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 90, 50));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 136, 77), 2));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

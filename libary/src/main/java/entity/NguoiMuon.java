@@ -17,7 +17,7 @@ public class NguoiMuon {
     private String tenNguoiMuon;
     private LocalDate ngayMuon;
     private LocalDate ngayTra;
-    private String trangThai;
+    
     private int soLuongMuon;
     List<Sach> sach ;
     private String queQuan;
@@ -40,24 +40,24 @@ public class NguoiMuon {
         this.soLuongMuon=soLuongMuon;
     }
     
-    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String trangThai, int soLuongMuon, String queQuan, String sdt, String Gmail) {
+    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, int soLuongMuon, String queQuan, String sdt, String Gmail) {
         this.idNguoiMuon = idNguoiMuon;
         this.tenNguoiMuon = tenNguoiMuon;
         this.ngayMuon = ngayMuon;
         this.ngayTra = ngayTra;
-        this.trangThai = trangThai;
+        
         this.soLuongMuon = soLuongMuon;
         this.queQuan = queQuan;
         this.sdt = sdt;
         this.Gmail = Gmail;
     }
 
-    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String trangThai, int soLuongMuon) {
+    public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, int soLuongMuon) {
     this.idNguoiMuon = idNguoiMuon;
     this.tenNguoiMuon = tenNguoiMuon;
     this.ngayMuon = ngayMuon;
     this.ngayTra = ngayTra;
-    this.trangThai = trangThai;
+    
     this.soLuongMuon = soLuongMuon;
     // Các trường khác như 'queQuan', 'sdt', 'Gmail' có thể được bỏ qua hoặc set giá trị mặc định nếu cần
 }
@@ -129,13 +129,7 @@ public class NguoiMuon {
         this.ngayTra = ngayTra;
     }
 
-    public String getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
+   
 
     public int getSoLuongMuon() {
         return soLuongMuon;
@@ -152,7 +146,7 @@ public class NguoiMuon {
                 ", tenNguoiMuon='" + tenNguoiMuon + '\'' +
                 ", ngayMuon=" + ngayMuon +
                 ", ngayTra=" + ngayTra +
-                ", trangThai='" + trangThai + '\'' +
+                
                 ", soLuongMuon=" + soLuongMuon +
                 '}';
     }

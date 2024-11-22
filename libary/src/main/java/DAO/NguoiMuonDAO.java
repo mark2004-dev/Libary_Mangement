@@ -43,12 +43,12 @@ public class NguoiMuonDAO {
                     String ten = rs.getString("ten_nguoi_muon");
                     LocalDate ngayMuon = rs.getDate("ngay_muon").toLocalDate();
                     LocalDate ngayTra = rs.getDate("ngay_tra") != null ? rs.getDate("ngay_tra").toLocalDate() : null;
-                    String trangThai = rs.getString("trang_thai");
+                    
                     int soLuong = rs.getInt("so_luong_muon");
                     String queQuan = rs.getString("queQuan");
                     String sdt = rs.getString("sdt");
                     String gmail = rs.getString("Gmail");
-                NguoiMuon s = new NguoiMuon(id,ten,ngayMuon, ngayTra, trangThai,soLuong,queQuan,sdt,gmail);
+                NguoiMuon s = new NguoiMuon(id,ten,ngayMuon, ngayTra,soLuong,queQuan,sdt,gmail);
                 nguoimuon.add(s);
             }
 
@@ -63,7 +63,7 @@ public class NguoiMuonDAO {
     }
     
     public boolean save(NguoiMuon nguoi) {
-    String sql = "INSERT INTO nguoi_muon (id, ten_nguoi_muon, ngay_muon, ngay_tra, trang_thai, so_luong_muon, queQuan, sdt, Gmail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO nguoi_muon (id, ten_nguoi_muon, ngay_muon, ngay_tra, so_luong_muon, queQuan, sdt, Gmail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try (Connection con = jdbcUtil.getConnection();
          PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -72,7 +72,7 @@ public class NguoiMuonDAO {
         pstmt.setString(2, nguoi.getTenNguoiMuon());
         pstmt.setDate(3, nguoi.getNgayMuon() != null ? java.sql.Date.valueOf(nguoi.getNgayMuon()) : null);
         pstmt.setDate(4, nguoi.getNgayTra() != null ? java.sql.Date.valueOf(nguoi.getNgayTra()) : null);
-        pstmt.setString(5, nguoi.getTrangThai());
+       
         pstmt.setInt(6, nguoi.getSoLuongMuon());
         pstmt.setString(7, nguoi.getQueQuan());
         pstmt.setString(8, nguoi.getSdt());
@@ -103,7 +103,7 @@ public class NguoiMuonDAO {
             int soLuongMuon = rs.getInt("so_luong_muon");
 
             // Khởi tạo đối tượng NguoiMuon với dữ liệu từ cơ sở dữ liệu
-            ketQua = new NguoiMuon(idNguoiMuon, tenNguoiMuon, ngayMuon, ngayTra, trangThai, soLuongMuon);
+            ketQua = new NguoiMuon(idNguoiMuon, tenNguoiMuon, ngayMuon, ngayTra, soLuongMuon);
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -112,7 +112,7 @@ public class NguoiMuonDAO {
 }
 
     public boolean updateNguoiMuon(NguoiMuon nguoiMuon) {
-    String sql = "UPDATE nguoi_muon SET ten_nguoi_muon = ?, ngay_muon = ?, ngay_tra = ?, trang_thai = ?, so_luong_muon = ?, queQuan = ?, sdt = ?, Gmail = ? WHERE id = ?";
+    String sql = "UPDATE nguoi_muon SET ten_nguoi_muon = ?, ngay_muon = ?, ngay_tra = ?, so_luong_muon = ?, queQuan = ?, sdt = ?, Gmail = ? WHERE id = ?";
 
     try (Connection con = jdbcUtil.getConnection();
          PreparedStatement st = con.prepareStatement(sql)) {
@@ -121,12 +121,12 @@ public class NguoiMuonDAO {
         st.setString(1, nguoiMuon.getTenNguoiMuon());
         st.setObject(2, nguoiMuon.getNgayMuon()); // LocalDate có thể sử dụng setObject để lưu vào SQL
         st.setObject(3, nguoiMuon.getNgayTra());
-        st.setString(4, nguoiMuon.getTrangThai());
-        st.setInt(5, nguoiMuon.getSoLuongMuon());
-        st.setString(6, nguoiMuon.getQueQuan());
-        st.setString(7, nguoiMuon.getSdt());
-        st.setString(8, nguoiMuon.getGmail());
-        st.setInt(9, nguoiMuon.getIdNguoiMuon());
+        
+        st.setInt(4, nguoiMuon.getSoLuongMuon());
+        st.setString(5, nguoiMuon.getQueQuan());
+        st.setString(6, nguoiMuon.getSdt());
+        st.setString(7, nguoiMuon.getGmail());
+        st.setInt(8, nguoiMuon.getIdNguoiMuon());
 
         // Thực thi câu lệnh SQL
         int rowsUpdated = st.executeUpdate();

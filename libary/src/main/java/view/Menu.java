@@ -92,7 +92,7 @@ public class Menu extends javax.swing.JFrame {
 
         jpntrangchu.setBackground(new java.awt.Color(255, 255, 255));
 
-        jlbtrangchu.setBackground(new java.awt.Color(0, 153, 153));
+        jlbtrangchu.setBackground(new java.awt.Color(255, 255, 255));
         jlbtrangchu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtrangchu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbtrangchu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/building.png"))); // NOI18N

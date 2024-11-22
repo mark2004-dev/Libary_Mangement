@@ -20,7 +20,14 @@ public class NhanVien {
 
     public NhanVien() {
     }
-
+    
+     public NhanVien(int idNhanVien, String hoTen, String gioiTinh, String diaChi, double luongCoBan) {
+        this.idNhanVien = idNhanVien;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.luongCoBan = luongCoBan;
+    }
     public NhanVien(int idNhanVien, String hoTen, String gioiTinh, String diaChi, String sdt, String email, double luongCoBan) {
         this.idNhanVien = idNhanVien;
         this.hoTen = hoTen;
@@ -89,5 +96,11 @@ public class NhanVien {
     public void setLuongCoBan(double luongCoBan) {
         this.luongCoBan = luongCoBan;
     }
+
+    @Override
+    public String toString() {
+        return "NhanVien{" + "idNhanVien=" + idNhanVien + ", hoTen=" + hoTen + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", luongCoBan=" + luongCoBan + '}';
+    }
+    
 }
 
