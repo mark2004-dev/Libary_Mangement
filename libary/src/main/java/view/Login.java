@@ -6,6 +6,7 @@ package view;
 
 import DAO.nguoidungDAO;
 import entity.nguoidung;
+import javax.swing.JOptionPane;
 //import java.awt.Menu;
 //import java.awt.Toolkit;
 //import java.net.URL;
@@ -48,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -60,15 +62,15 @@ public class Login extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 270, 40));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 270, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Tài khoản:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 82, 47));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 82, 47));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Mật khẩu:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 82, 46));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 82, 46));
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 270, 40));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 0));
@@ -106,7 +108,7 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 98, 36));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 0, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 20)); // NOI18N
@@ -116,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 300));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 51));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 406, 11));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 406, 11));
 
         jLabel8.setForeground(new java.awt.Color(51, 0, 255));
         jLabel8.setText("Quên mật khẩu");
@@ -124,7 +126,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 220, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 340, 20));
+
+        jLabel5.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/admin_login.png"))); // NOI18N
+        jLabel5.setText("Đăng Ký");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,6 +175,7 @@ public class Login extends javax.swing.JFrame {
                 // Điều hướng đến trang menu
                 Menu menu = new Menu();
                 menu.setVisible(true);
+                
                 this.dispose();
             } else {
                 baoloi = "Tài khoản hoặc mật khẩu không đúng";
@@ -225,6 +235,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

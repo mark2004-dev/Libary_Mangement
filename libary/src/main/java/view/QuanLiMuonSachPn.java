@@ -65,7 +65,7 @@ for (NguoiMuon nguoi : nguoimuons) {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(0, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
         jLabel1.setText("Quản lí mượn sách");

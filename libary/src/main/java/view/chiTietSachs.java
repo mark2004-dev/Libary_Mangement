@@ -89,41 +89,43 @@ private int idSach;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 102, 51));
 
+        jPanel1.setForeground(new java.awt.Color(255, 102, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 102, 51));
         jLabel6.setText("Năm xuất bản");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 132, 81, -1));
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 129, 143, 30));
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 130, 150));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 102, 51));
         jLabel1.setText("Tiêu đề sách");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 90, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 110, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 41, 130, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 130, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 102, 51));
         jLabel2.setText("Tác giả");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 77, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 102, 51));
         jLabel3.setText("Số sách");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 44, 93, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 102, 51));
         jLabel4.setText("Thể loại");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 84, 93, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 125, 30));
@@ -137,7 +139,7 @@ private int idSach;
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 81, 143, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 102, 51));
         jLabel5.setText("Nhà xuất bản");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 100, -1));
 
@@ -148,23 +150,20 @@ private int idSach;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

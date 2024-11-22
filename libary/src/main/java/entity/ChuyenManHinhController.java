@@ -142,8 +142,8 @@ public class ChuyenManHinhController {
                 item.getJpn().setBackground(new Color(255, 153, 51));
             } else {
                 // Đặt lại màu sắc cho các mục khác
-                item.getJlb().setBackground(new Color(0,153,153));
-                item.getJpn().setBackground(new Color(0,153,153));
+                item.getJlb().setBackground(new Color(255,51,51));
+                item.getJpn().setBackground(new Color(255,51,51));
             }
         }
     }

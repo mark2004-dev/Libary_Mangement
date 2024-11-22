@@ -146,7 +146,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jPanel1.setToolTipText("Chức năng");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setBackground(new java.awt.Color(255, 0, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton1.setText("Thêm ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -154,9 +154,9 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 40));
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setBackground(new java.awt.Color(255, 0, 51));
         jButton2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton2.setText("Sửa");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +164,9 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, 40));
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 204));
+        jButton3.setBackground(new java.awt.Color(255, 0, 51));
         jButton3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton3.setText("Xoá");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -174,9 +174,9 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, 40));
 
-        jButton5.setBackground(new java.awt.Color(0, 204, 204));
+        jButton5.setBackground(new java.awt.Color(255, 0, 51));
         jButton5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton5.setText("Chi tiết sách");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -184,15 +184,17 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, 30));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 30));
 
-        jButton8.setText("coppy");
+        jButton8.setBackground(new java.awt.Color(255, 0, 51));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton8.setText("Coppy");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 80, 30));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 300, 150));
 
@@ -206,6 +208,7 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 230, 30));
 
         jButton4.setBackground(new java.awt.Color(0, 204, 204));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("Click");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +277,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, 380));
 
+        jButton7.setBackground(new java.awt.Color(255, 0, 51));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton7.setText("Xuất file Exel");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,13 +287,15 @@ public class TrangChuPanel extends javax.swing.JPanel {
         });
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, -1, 30));
 
+        jButton6.setBackground(new java.awt.Color(0, 255, 102));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton6.setText("Improt picture");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 580, 110, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 580, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
