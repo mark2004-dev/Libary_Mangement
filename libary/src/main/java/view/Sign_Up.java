@@ -4,6 +4,7 @@
  */
 package view;
 
+import entity.EmailSender;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -170,80 +171,91 @@ public class Sign_Up extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //DANG KY
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String taikhoan = jTextField1.getText();
-    String matkhau = jTextField3.getText();
-    String nhaplai = jTextField5.getText();
-    String email = jTextField4.getText();
-    String sdt = jTextField2.getText();
-    String baoloi = "";
-    int ketQua = 0;
-     
-    String passwordPattern = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$";
-    String EMAIL_REGEX = "^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,}$";
-    String phonePattern = "^[0-9]+$";
-    String userNamePattern = "^[a-zA-Z]+\\d+$"; 
-    // Kiểm tra các điều kiện đầu vào
-    if (!matkhau.equals(nhaplai)) {
-        baoloi = "Mật khẩu nhập lại phải trùng với mật khẩu";
-    } else if (taikhoan.isEmpty() || matkhau.isEmpty() || email.isEmpty() || nhaplai.isEmpty() || sdt.isEmpty()) {
-        baoloi = "Thông tin không được để trống";
-    } else if (sdt.length() != 10 || !Pattern.matches(phonePattern, sdt)) {
-        baoloi = "Số điện thoại phải 10 số";
-    } else if (!Pattern.matches(EMAIL_REGEX, email)) {
-        baoloi = "Email không đúng định dạng";
-    }else if (!Pattern.matches(passwordPattern, matkhau)){
-        baoloi="Mật khẩu phải chứa ít nhất 1 chữ in hoa và 1 ký tự đặc biệt!";
-    }else if( taikhoan.length() !=7 && !Pattern.matches(userNamePattern, taikhoan)){
-         baoloi="Tên người dùng phải chứa ký tự và số và không vượt quá 7 ký tự!";
-    }
-       
-    else {
-        try {
-            // Bước 1: Tạo kết nối đến CSDL
-            Connection con = jdbcUtil.getConnection();
+  
+String taikhoan = jTextField1.getText();
+String matkhau = jTextField3.getText();
+String nhaplai = jTextField5.getText();
+String email = jTextField4.getText();
+String sdt = jTextField2.getText();
+String baoloi = "";
+int ketQua = 0;
 
-            // Bước 2: Kiểm tra tài khoản đã tồn tại hay chưa
-            String checkUserSql = "SELECT COUNT(*) FROM nguoidung WHERE tentk = ?";
-            PreparedStatement checkStmt = con.prepareStatement(checkUserSql);
-            checkStmt.setString(1, taikhoan);
-            ResultSet rs = checkStmt.executeQuery();
-            rs.next();
-            int userCount = rs.getInt(1);
+String passwordPattern = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$";
+String EMAIL_REGEX = "^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,}$";
+String phonePattern = "^[0-9]+$";
+String userNamePattern = "^[a-zA-Z]+\\d+$";
 
-            if (userCount > 0) {
-                baoloi = "Tài khoản đã tồn tại, vui lòng chọn tài khoản khác.";
-            } else {
-                // Nếu tài khoản không tồn tại, tiến hành đăng ký
-                String sql = "INSERT INTO nguoidung (tentk, email, matkhau, sodienthoai) VALUES (?, ?, ?, ?)";
-                PreparedStatement st = con.prepareStatement(sql);
-                st.setString(1, taikhoan);
-                st.setString(2, email);
-                st.setString(3, hashPassword(matkhau));
-                st.setString(4, sdt);
+// Kiểm tra các điều kiện đầu vào
+if (!matkhau.equals(nhaplai)) {
+    baoloi = "Mật khẩu nhập lại phải trùng với mật khẩu";
+} else if (taikhoan.isEmpty() || matkhau.isEmpty() || email.isEmpty() || nhaplai.isEmpty() || sdt.isEmpty()) {
+    baoloi = "Thông tin không được để trống";
+} else if (sdt.length() != 10 || !Pattern.matches(phonePattern, sdt)) {
+    baoloi = "Số điện thoại phải 10 số";
+} else if (!Pattern.matches(EMAIL_REGEX, email)) {
+    baoloi = "Email không đúng định dạng";
+} else if (!Pattern.matches(passwordPattern, matkhau)) {
+    baoloi = "Mật khẩu phải chứa ít nhất 1 chữ in hoa và 1 ký tự đặc biệt!";
+}  else {
+    try {
+        // Kết nối đến CSDL
+        Connection con = jdbcUtil.getConnection();
 
-                // Thực thi câu lệnh SQL
-                ketQua = st.executeUpdate();
-                System.out.println("Bạn đã thực thi: " + sql);
-                System.out.println("Có " + ketQua + " dòng bị thay đổi!");
-                Login login =new Login();
+        // Kiểm tra tài khoản đã tồn tại
+        String checkUserSql = "SELECT COUNT(*) FROM nguoidung WHERE tentk = ?";
+        PreparedStatement checkStmt = con.prepareStatement(checkUserSql);
+        checkStmt.setString(1, taikhoan);
+        ResultSet rs = checkStmt.executeQuery();
+        rs.next();
+        int userCount = rs.getInt(1);
+
+        if (userCount > 0) {
+            baoloi = "Tài khoản đã tồn tại, vui lòng chọn tài khoản khác.";
+        } else {
+            // Thêm tài khoản vào CSDL
+            String sql = "INSERT INTO nguoidung (tentk, email, matkhau, sodienthoai) VALUES (?, ?, ?, ?)";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, taikhoan);
+            st.setString(2, email);
+            st.setString(3, hashPassword(matkhau)); // Hàm hash mật khẩu
+            st.setString(4, sdt);
+
+            // Thực thi câu lệnh SQL
+            ketQua = st.executeUpdate();
+            System.out.println("Bạn đã thực thi: " + sql);
+            System.out.println("Có " + ketQua + " dòng bị thay đổi!");
+
+            if (ketQua > 0) {
+                // Gửi email thông báo đăng ký thành công
+                String subject = "Đăng ký tài khoản thành công";
+                String body = "Xin chào " + taikhoan + ",\n\nCảm ơn bạn đã đăng ký tài khoản trên hệ thống của chúng tôi. "
+                        + "Tài khoản của bạn đã được tạo thành công.\n\nThông tin tài khoản:\n"
+                        + "Tên tài khoản: " + taikhoan + "\n"
+                        + "Email: " + email + "\n\n"
+                        + "Trân trọng,\nHệ thống quản lý";
+
+                EmailSender.sendEmail(email, subject, body);
+
+                // Hiển thị thông báo thành công
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công! Email đã được gửi đến " + email, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                // Chuyển sang giao diện đăng nhập
+                Login login = new Login();
                 login.setVisible(true);
                 this.dispose();
-                JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                
-                
             }
-
-            // Đóng kết nối
-            jdbcUtil.closeConnection(con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            baoloi = "Đã có lỗi xảy ra, vui lòng thử lại!";
         }
+
+        // Đóng kết nối
+        jdbcUtil.closeConnection(con);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        baoloi = "Đã có lỗi xảy ra, vui lòng thử lại!";
     }
-    
-    // Hiển thị thông báo lỗi hoặc thành công
-    jLabel9.setText(baoloi);
-        
+}
+
+// Hiển thị thông báo lỗi nếu có
+jLabel9.setText(baoloi);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
       
