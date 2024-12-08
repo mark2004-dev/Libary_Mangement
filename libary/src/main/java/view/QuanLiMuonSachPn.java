@@ -6,9 +6,10 @@ package view;
 
 import DAO.NguoiMuonDAO;
 import entity.NguoiMuon;
+import java.time.LocalDate;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -23,12 +24,12 @@ public class QuanLiMuonSachPn extends javax.swing.JPanel {
         initComponents();
         getall();
     }
-    
+
     public void getall() {
         NguoiMuonDAO dao = new NguoiMuonDAO();
         List<NguoiMuon> nguoimuons = dao.getAll(); // Lấy danh sách sách từ cơ sở dữ liệu
         DefaultTableModel model = new DefaultTableModel();
-        
+
         // Thêm cột vào model
         model.addColumn("ID nguoimuon");
         model.addColumn("Tên người mươn");
@@ -38,18 +39,19 @@ public class QuanLiMuonSachPn extends javax.swing.JPanel {
         // Thêm cột Giá nếu có
 
         // Thêm dữ liệu vào model
-for (NguoiMuon nguoi : nguoimuons) {
-    model.addRow(new Object[]{
-        nguoi.getIdNguoiMuon(),       // ID của sách
-        nguoi.getTenNguoiMuon(),      // Tên sách
-        nguoi.getNgayMuon(),          // Ngày mượn
-        nguoi.getNgayTra(),           // Ngày trả
-        nguoi.getSoLuongMuon()         // Trạng thái
-    });
-}
+        for (NguoiMuon nguoi : nguoimuons) {
+            model.addRow(new Object[]{
+                nguoi.getIdNguoiMuon(), // ID của sách
+                nguoi.getTenNguoiMuon(), // Tên sách
+                nguoi.getNgayMuon(), // Ngày mượn
+                nguoi.getNgayTra(), // Ngày trả
+                nguoi.getSoLuongMuon() // Trạng thái
+            });
+        }
 
         jTable1.setModel(model); // Gán model vào jTable1 để hiển thị dữ liệu
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,11 +66,12 @@ for (NguoiMuon nguoi : nguoimuons) {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
-        jLabel1.setText("Quản lí mượn sách");
+        jLabel1.setText("Thống Kê");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,34 +95,43 @@ for (NguoiMuon nguoi : nguoimuons) {
             }
         });
 
+        jButton1.setText("click");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 257, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 36, Short.MAX_VALUE)
+                .addGap(0, 38, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -129,8 +141,64 @@ for (NguoiMuon nguoi : nguoimuons) {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        NguoiMuonDAO nguoiMuonDAO = new NguoiMuonDAO();
+        String input = jTextField1.getText().trim();
+        Integer id = null;
+        String ten = null;
+        LocalDate ngayMuon = null;
+        LocalDate ngayTra = null;
+        Integer soLuong = null;
+
+        try {
+            // Kiểm tra nếu đầu vào là số nguyên
+            int intValue = Integer.parseInt(input);
+
+            // Nếu giá trị nằm trong khoảng hợp lệ của năm (1900 - 2100), giả định là ngày mượn/ngày trả
+            if (intValue >= 1900 && intValue <= 2100) {
+                // Giả định chỉ nhập năm, bạn có thể thêm logic để phân biệt ngày mượn/ngày trả
+                ngayMuon = LocalDate.of(intValue, 1, 1); // Mặc định gán ngày 1/1
+            } else {
+                id = intValue; // Nếu không phải năm, giả định là ID người mượn
+            }
+        } catch (NumberFormatException e1) {
+            try {
+                // Nếu đầu vào không phải số nguyên nhưng có thể là số lượng
+                soLuong = Integer.parseInt(input);
+            } catch (NumberFormatException e2) {
+                // Nếu không phải số, giả định đó là tên người mượn
+                ten = input;
+            }
+        }
+
+// Gọi phương thức findNguoiMuonByAttributes với các giá trị đã xác định
+        List<NguoiMuon> foundNguoiMuons = nguoiMuonDAO.findNguoiMuonByAttributes(id, ten, ngayMuon, ngayTra, soLuong);
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID Người mượn");
+        model.addColumn("Tên Người Mượn");
+        model.addColumn("Ngày Mượn");
+        model.addColumn("Ngày Trả");
+        model.addColumn("Số Lượng Mượn");
+
+        for (NguoiMuon nguoiMuon : foundNguoiMuons) {
+            model.addRow(new Object[]{
+                nguoiMuon.getIdNguoiMuon(),
+                nguoiMuon.getTenNguoiMuon(),
+                nguoiMuon.getNgayMuon() != null ? nguoiMuon.getNgayMuon().toString() : "N/A",
+                nguoiMuon.getNgayTra() != null ? nguoiMuon.getNgayTra().toString() : "N/A",
+                nguoiMuon.getSoLuongMuon()
+            });
+        }
+
+        jTable1.setModel(model);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -63,7 +63,6 @@ public class Menu extends javax.swing.JFrame {
         jlbtaikhoan = new javax.swing.JLabel();
         jdoimk = new javax.swing.JPanel();
         jlbdoimk = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanelview = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,8 +73,7 @@ public class Menu extends javax.swing.JFrame {
 
         jlbmuonsach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbmuonsach.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbmuonsach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/contact.png"))); // NOI18N
-        jlbmuonsach.setText(" Quản Lí Mượn Sách");
+        jlbmuonsach.setText("Thống Kê");
 
         javax.swing.GroupLayout jpnmuonsachLayout = new javax.swing.GroupLayout(jpnmuonsach);
         jpnmuonsach.setLayout(jpnmuonsachLayout);
@@ -95,7 +93,6 @@ public class Menu extends javax.swing.JFrame {
         jlbtrangchu.setBackground(new java.awt.Color(255, 255, 255));
         jlbtrangchu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtrangchu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbtrangchu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/building.png"))); // NOI18N
         jlbtrangchu.setText("   Trang Chủ");
 
         javax.swing.GroupLayout jpntrangchuLayout = new javax.swing.GroupLayout(jpntrangchu);
@@ -113,7 +110,6 @@ public class Menu extends javax.swing.JFrame {
 
         jlbnguoimuon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbnguoimuon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbnguoimuon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/borrow 1.png"))); // NOI18N
         jlbnguoimuon.setText("Quản Lí Người Mượn");
 
         javax.swing.GroupLayout jpnnguoimuonLayout = new javax.swing.GroupLayout(jpnnguoimuon);
@@ -133,7 +129,6 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/power.png"))); // NOI18N
         jLabel3.setText("   Đăng Xuất");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,7 +157,6 @@ public class Menu extends javax.swing.JFrame {
 
         jlbnhanvien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbnhanvien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbnhanvien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/personnel.png"))); // NOI18N
         jlbnhanvien.setText("Quản Lí Nhân Viên");
         jpnhanvien.add(jlbnhanvien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 60));
 
@@ -170,7 +164,6 @@ public class Menu extends javax.swing.JFrame {
 
         jlbtaikhoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbtaikhoan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbtaikhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/fund.png"))); // NOI18N
         jlbtaikhoan.setText("Quản Lí Tài Khoản");
 
         javax.swing.GroupLayout jptaikhoanLayout = new javax.swing.GroupLayout(jptaikhoan);
@@ -190,14 +183,10 @@ public class Menu extends javax.swing.JFrame {
 
         jlbdoimk.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbdoimk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlbdoimk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/return1.png"))); // NOI18N
         jlbdoimk.setText("    Đổi mật khẩu");
         jdoimk.add(jlbdoimk, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 40));
 
         jpn1.add(jdoimk, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 180, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/bookhome.png"))); // NOI18N
-        jpn1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         getContentPane().add(jpn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 620));
 
@@ -276,7 +265,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel8;

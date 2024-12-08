@@ -303,11 +303,11 @@ String tenTaiKhoan = jTextField4.getText();  // txtTenTaiKhoan là JTextField ch
         JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin.");
         return;
     }
-
+     String hashPassWord=PasswordUtils.hashPassword(matKhau);
     // Tạo đối tượng nguoidung mới và gán các giá trị
     nguoidung nguoiDungMoi = new nguoidung();
     nguoiDungMoi.setTentk(tenTaiKhoan);
-    nguoiDungMoi.setMatkhau(matKhau);
+    nguoiDungMoi.setMatkhau(hashPassWord);
     nguoiDungMoi.setEmail(email);
     nguoiDungMoi.setSodienthoai(soDienThoai);
 

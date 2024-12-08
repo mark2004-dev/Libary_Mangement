@@ -200,7 +200,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 160, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setText("ID");
+        jLabel8.setText("id ");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 88, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -285,8 +285,8 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
 
         if (nguoi == null) {
             // Nếu người mượn không tồn tại, tạo đối tượng mới
-            nguoi = new NguoiMuon(ten, ngaymuon, ngaytra, quequan, sdt, gmail, soluongmuon);
-
+            nguoi = new NguoiMuon(id,ten, ngaymuon, ngaytra, quequan, sdt, gmail, soluongmuon);
+            
             // Lưu người mượn mới vào cơ sở dữ liệu
             boolean saved = dao.save(nguoi);
             
@@ -403,7 +403,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         }
 
         // Lấy ID từ cột đầu tiên của hàng đã chọn
-        int id = (int) jTable1.getValueAt(selectedRow, 5);
+        int id = (int) jTable1.getValueAt(selectedRow, 4);
 
         // Tạo đối tượng DAO
         NguoiMuonDAO dao = new NguoiMuonDAO();

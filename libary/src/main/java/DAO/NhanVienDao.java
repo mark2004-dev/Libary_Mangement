@@ -61,16 +61,18 @@ public class NhanVienDao {
     }
 
     public boolean save(NhanVien nhanVien) {
-        String sql = "INSERT INTO nhan_vien (hoTen, gioiTinh, diaChi, sdt, email, luongCoBan) VALUES (?, ?, ?, ?, ?, ? )";
+        String sql = "INSERT INTO nhan_vien (idNhanVien,hoTen, gioiTinh, diaChi, sdt, email, luongCoBan) VALUES (?, ?, ?, ?, ?, ?,? )";
 
         try (Connection con = jdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setString(1, nhanVien.getHoTen());
-            pstmt.setString(2, nhanVien.getGioiTinh());
-            pstmt.setString(3, nhanVien.getDiaChi());
-            pstmt.setString(4, nhanVien.getSdt());
-            pstmt.setString(5, nhanVien.getEmail());
-            pstmt.setDouble(6, nhanVien.getLuongCoBan());
+            pstmt.setInt(1, nhanVien.getIdNhanVien());
+            pstmt.setString(2, nhanVien.getHoTen());
+            pstmt.setString(3, nhanVien.getGioiTinh());
+            pstmt.setString(4, nhanVien.getDiaChi());
+            pstmt.setString(5, nhanVien.getSdt());
+            pstmt.setString(6, nhanVien.getEmail());
+            pstmt.setDouble(7, nhanVien.getLuongCoBan());
+            
+            
 
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {

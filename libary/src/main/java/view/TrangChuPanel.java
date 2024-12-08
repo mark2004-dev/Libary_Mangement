@@ -64,6 +64,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
         model.addColumn("Tên Sách");
         model.addColumn("Năm Xuất Bản");
         model.addColumn("Giá");
+        model.addColumn("số lượng");
+        
         // Thêm cột Giá nếu có
 
         // Thêm dữ liệu vào model
@@ -74,6 +76,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
                 book.getNamXuatBan(), // Năm xuất bản
                 book.getGia(),
+                book.getSoLuong(),
+                
                // Giá
             });
         }
@@ -122,6 +126,8 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,7 +301,11 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 jButton6ActionPerformed(evt);
             }
         });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 580, 120, -1));
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 630, 120, -1));
+        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 160, -1));
+
+        jLabel12.setText("số lượng");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -446,7 +456,7 @@ try {
         String tacgia = jTextField8.getText().trim();
         String nhaxb = jTextField6.getText().trim();
         String theloai = jTextField7.getText().trim();
-
+        Integer soluong = Integer.parseInt(jTextField9.getText().trim());
         // Reset thông báo lỗi trước khi kiểm tra
         jLabel9.setText(""); // ID error label
         jLabel10.setText(""); // Nam XB error label
@@ -475,6 +485,7 @@ try {
             jLabel11.setForeground(Color.RED);
             isValid = false;
         }
+        
 
         // Nếu có trường rỗng, dừng việc xử lý
         if (!isValid) {
@@ -510,7 +521,7 @@ try {
         }
 
         // Nếu sách không tồn tại, tạo một đối tượng mới và lưu vào cơ sở dữ liệu
-        sach = new Sach(id, ten, namxb, gia, tacgia, nhaxb, theloai);
+        sach = new Sach(id, ten, namxb, gia, tacgia, nhaxb, theloai,soluong);
         boolean saved = sachDAO.save(sach); // Gọi hàm save để thêm sách mới
         if (saved) {
             // Cập nhật label thành công
@@ -691,7 +702,7 @@ try {
 }    private void saveImageToDatabase(int bookId, byte[] imageBytes) {
         String url = "jdbc:mysql://localhost:3306/sach";
         String username = "root";
-        String password = "12345678";
+        String password = "112233";
 
         String sql = "UPDATE sach SET anh = ? WHERE id = ?"; // Cập nhật ảnh của quyển sách theo ID
 
@@ -771,6 +782,7 @@ try {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -792,5 +804,6 @@ try {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,10 +26,23 @@ public class NguoiMuon {
 
     // Constructor
 
-    
-    
-    
+    public NguoiMuon() {
+    }
 
+    
+    
+    
+public NguoiMuon(int idNguoiMuon, String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, 
+                     String queQuan, String sdt, String Gmail, int soLuongMuon) {
+        this.idNguoiMuon = idNguoiMuon;
+        this.tenNguoiMuon = tenNguoiMuon;
+        this.ngayMuon = ngayMuon;
+        this.ngayTra = ngayTra;
+        this.queQuan = queQuan;
+        this.sdt = sdt;
+        this.Gmail = Gmail;
+        this.soLuongMuon = soLuongMuon;
+    }
     public NguoiMuon(String tenNguoiMuon, LocalDate ngayMuon, LocalDate ngayTra, String queQuan, String sdt, String Gmail,int soLuongMuon) {
         this.tenNguoiMuon = tenNguoiMuon;
         this.ngayMuon = ngayMuon;

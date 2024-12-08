@@ -137,7 +137,6 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(255, 0, 51));
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/admin_login.png"))); // NOI18N
         jLabel5.setText("Đăng Nhập");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
