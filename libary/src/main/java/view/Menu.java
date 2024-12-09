@@ -116,9 +116,7 @@ public class Menu extends javax.swing.JFrame {
         jpnnguoimuon.setLayout(jpnnguoimuonLayout);
         jpnnguoimuonLayout.setHorizontalGroup(
             jpnnguoimuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnnguoimuonLayout.createSequentialGroup()
-                .addComponent(jlbnguoimuon)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jlbnguoimuon, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
         );
         jpnnguoimuonLayout.setVerticalGroup(
             jpnnguoimuonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +219,9 @@ public class Menu extends javax.swing.JFrame {
         
         
         // Hide/dispose the current Menu window 
-        this.dispose();
+         Login lg = new Login();
+         lg.setVisible(true);
+         this.dispose();
         
         // Show the choose_signin window
      
