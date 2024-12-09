@@ -22,42 +22,40 @@ import view.jdbcUtil;
 public class nguoidungDAO implements DAOinterfacee<nguoidung> {
 
     @Override
-    public nguoidung findByIdAndPassWork(nguoidung t) {
-        nguoidung ketQua = null;
-        try {
-            // Bước 1: tạo kết nối đến CSDL
-            Connection con = jdbcUtil.getConnection();
+    public nguoidung findByIdAndPassWork(nguoidung nguoi) {
+    nguoidung nguoidung = null;
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
-            // Bước 2: tạo ra đối tượng statement
-            String sql = "SELECT * FROM nguoidung WHERE tentk=? and matkhau=?";
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, t.getTentk());
-            String hashedPassword = hashPassword(t.getMatkhau());
-             st.setString(2, hashedPassword);
-            // Bước 3: thực thi câu lệnh SQL
-         
-            ResultSet rs = st.executeQuery();
+    try {
+        // Kết nối CSDL
+        con = jdbcUtil.getConnection();
 
-            // Bước 4:
-            while (rs.next()) {
+        // Truy vấn kiểm tra tài khoản và mật khẩu
+        String sql = "SELECT * FROM nguoidung WHERE tentk = ? AND matkhau = ?";
+        ps = con.prepareStatement(sql);
+        ps.setString(1, nguoi.getTentk());
+        ps.setString(2, nguoi.getMatkhau());
 
-                String tenDangNhap = rs.getString("tentk");
-                String matKhau = rs.getString("matkhau");
-                String email = rs.getString("email");
-                String sdt = rs.getString("sodienthoai");
+        // Thực hiện truy vấn
+        rs = ps.executeQuery();
 
-                ketQua = new nguoidung(tenDangNhap, email, matKhau, sdt);
-            }
-
-            // Bước 5:
-            jdbcUtil.closeConnection(con);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if (rs.next()) {
+            // Nếu tìm thấy, tạo đối tượng nguoidung từ kết quả
+            nguoidung = new nguoidung();
+            
+            nguoidung.setTentk(rs.getString("tentk"));
+            nguoidung.setEmail(rs.getString("email"));
+            nguoidung.setMatkhau(rs.getString("matkhau"));
+            nguoidung.setSodienthoai(rs.getString("sodienthoai"));
+            // Thêm các trường khác nếu cần
         }
-
-        return ketQua;
-    }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } 
+    return nguoidung;
+}
 
   
     public nguoidung findByten(String tentk) {

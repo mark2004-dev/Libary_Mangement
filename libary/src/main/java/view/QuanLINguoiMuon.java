@@ -307,7 +307,7 @@ public class QuanLINguoiMuon extends javax.swing.JPanel {
         }
     } else {
         // Nếu sách không đủ số lượng
-        JOptionPane.showMessageDialog(null, "Sách không đủ số lượng để mượn!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Sách không đủ số lượng để mượn k tồn tại id!", "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
 } catch (NumberFormatException e) {
     JOptionPane.showMessageDialog(null, "Vui lòng nhập số hợp lệ cho ID và số lượng mượn!", "Lỗi", JOptionPane.ERROR_MESSAGE);

@@ -131,6 +131,12 @@ public class Sign_Up extends javax.swing.JFrame {
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, -1, -1));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 280, 30));
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 280, 30));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 280, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -263,6 +269,10 @@ jLabel9.setText(baoloi);
             Login.setVisible(true);
             this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 private String actualPassword = ""; // Lưu mật khẩu thực
 
     /**

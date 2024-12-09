@@ -41,7 +41,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -50,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel4.setText("jLabel4");
 
@@ -78,21 +78,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 270, 40));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Đăng nhập");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, -1, 36));
 
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Bạn chưa có tài khoản");
@@ -140,6 +125,14 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Đăng Nhập");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, -1));
 
+        jButton1.setText("Đăng Nhập");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 243, 100, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -152,6 +145,39 @@ public class Login extends javax.swing.JFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String tendangnhap = jTextField1.getText().trim();
+    String matkhau = new String(jPasswordField1.getPassword()).trim();
+
+    String baoloi = "";
+    if (tendangnhap.isEmpty() || matkhau.isEmpty()) {
+        baoloi = "Không được để trống thông tin";
+    } else {
+        // Tạo đối tượng người dùng để kiểm tra
+        String hashedPassword = PasswordUtils.hashPassword(matkhau);
+        nguoidung nguoi = new nguoidung();
+        nguoi.setTentk(tendangnhap);
+        nguoi.setMatkhau(hashedPassword); // Chưa hash mật khẩu (kiểm tra trực tiếp)
+        
+        // Gọi DAO để kiểm tra tài khoản
+        nguoidungDAO ngdao = new nguoidungDAO();
+        nguoidung nguoidung = ngdao.findByIdAndPassWork(nguoi);
+
+        if (nguoidung != null) {
+            // Đăng nhập thành công
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            this.dispose();
+        } else {
+            // Đăng nhập thất bại
+            baoloi = "Tài khoản hoặc mật khẩu không đúng";
+        }
+    }
+    // Hiển thị lỗi (nếu có)
+    jLabel7.setText(baoloi);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
@@ -166,33 +192,7 @@ public class Login extends javax.swing.JFrame {
             this.dispose();
     }// GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String tendangnhap = jTextField1.getText();
-        String matkhau = new String(jPasswordField1.getPassword());
-        nguoidung nguoi = new nguoidung();
-        nguoi.setTentk(tendangnhap);
-        nguoi.setMatkhau(matkhau);
-         
-        String baoloi = "";
-        if (tendangnhap.isEmpty() || matkhau.isEmpty()) {
-            baoloi = "Không được để trống thông tin";
-        } else {
-            nguoidungDAO ngdao = new nguoidungDAO();
-            nguoidung nguoidung = ngdao.findByIdAndPassWork(nguoi);
-            if (nguoidung != null) {
-                // Điều hướng đến trang menu
-                Menu menu = new Menu();
-                menu.setVisible(true);
-                
-                this.dispose();
-            } else {
-                baoloi = "Tài khoản hoặc mật khẩu không đúng";
-            }
-        }
-        jLabel7.setText(baoloi);
-
-    }// GEN-LAST:event_jButton2ActionPerformed
+    // GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,7 +238,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

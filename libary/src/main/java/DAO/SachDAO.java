@@ -83,25 +83,30 @@ public class  SachDAO implements DAOinterfacee<Sach> {
     }
 
     public boolean updateBook(Sach sach) {
-    String sql = "UPDATE sach SET ten_sach = ?, nam_xuat_ban = ?, gia = ?, so_luong = ? WHERE id = ?";
+    String sql = "UPDATE sach SET id=? , ten_sach = ?, nam_xuat_ban = ?, gia = ?, tac_gia = ?, nha_xuat_ban = ?, the_loai = ?, so_luong = ? WHERE id = ?";
 
     try (Connection con = jdbcUtil.getConnection();
          PreparedStatement pstmt = con.prepareStatement(sql)) {
 
         // Cài đặt giá trị cho các tham số trong câu lệnh SQL
-        pstmt.setString(1, sach.getTenSach()); // Set tên sách
-        pstmt.setInt(2, sach.getNamXuatBan()); // Set năm xuất bản
-        pstmt.setDouble(3, sach.getGia()); // Set giá
-        pstmt.setInt(4, sach.getSoluong()); // Set số lượng
-        pstmt.setInt(5, sach.getId()); // Set ID sách (mặc dù đã có ID nhưng vẫn cần cho WHERE)
+        pstmt.setInt(1, sach.getId());
+        pstmt.setString(2, sach.getTenSach());         // Tên sách
+        pstmt.setInt(3, sach.getNamXuatBan());        // Năm xuất bản
+        pstmt.setDouble(4, sach.getGia());            // Giá
+        pstmt.setString(5, sach.getTacgia());         // Tác giả
+        pstmt.setString(6, sach.getNhaxb());     // Nhà xuất bản
+        pstmt.setString(7, sach.getTheloai());        // Thể loại
+        pstmt.setInt(8, sach.getSoLuong());           // Số lượng
+        pstmt.setInt(9, sach.getId());                // ID sách (cho WHERE)
 
-        // Thực hiện câu lệnh SQL và trả về kết quả (có cập nhật thành công hay không)
+        // Thực hiện câu lệnh SQL và trả về kết quả
         return pstmt.executeUpdate() > 0;
     } catch (SQLException e) {
         e.printStackTrace();
         return false;
     }
 }
+
 
 
     public boolean save(Sach sach) {

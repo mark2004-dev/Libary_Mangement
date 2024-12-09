@@ -51,7 +51,19 @@ public class TrangChuPanel extends javax.swing.JPanel {
     public TrangChuPanel() {
         initComponents();
         getall();
-        
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow >= 0) { // Kiểm tra xem dòng có hợp lệ không
+            jTextField2.setText(jTable1.getValueAt(selectedRow, 0).toString()); // ID
+            jTextField3.setText(jTable1.getValueAt(selectedRow, 1).toString()); // Tên sách
+            jTextField4.setText(jTable1.getValueAt(selectedRow, 2).toString()); // Năm xuất bản
+            jTextField5.setText(jTable1.getValueAt(selectedRow, 3).toString()); // Giá
+            jTextField9.setText(jTable1.getValueAt(selectedRow, 4).toString()); // Số lượng
+        }
+    }
+});
     }
 
     public void getall() {
@@ -124,10 +136,10 @@ public class TrangChuPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jTextField9 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -280,8 +292,22 @@ public class TrangChuPanel extends javax.swing.JPanel {
 
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 250, -1));
+        jPanel3.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 160, -1));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, 380));
+        jLabel12.setText("số lượng");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(0, 255, 102));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton6.setText("Improt picture");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 120, -1));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 330, 440));
 
         jButton7.setBackground(new java.awt.Color(255, 0, 51));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -292,20 +318,6 @@ public class TrangChuPanel extends javax.swing.JPanel {
             }
         });
         add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, -1, 30));
-
-        jButton6.setBackground(new java.awt.Color(0, 255, 102));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setText("Improt picture");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 630, 120, -1));
-        add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 160, -1));
-
-        jLabel12.setText("số lượng");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -315,7 +327,10 @@ public class TrangChuPanel extends javax.swing.JPanel {
             String ten = jTextField3.getText().trim();
             int namxb = Integer.parseInt(jTextField4.getText().trim());
             double gia = Double.parseDouble(jTextField5.getText().trim());
-
+            String tacgia = jTextField8.getText().trim();
+            String nhaxb = jTextField6.getText().trim();
+            String theloai = jTextField7.getText().trim();
+            Integer soluong = Integer.parseInt(jTextField9.getText().trim());
             // Khởi tạo đối tượng SachDAO để truy xuất cơ sở dữ liệu
             SachDAO sachDAO = new SachDAO();
             Sach sach = sachDAO.findById(id); // Tìm sách theo ID
@@ -324,9 +339,14 @@ public class TrangChuPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "ID sách không tồn tại, không thể cập nhật!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             } else {
                 // Cập nhật thông tin sách
+                sach.setId(id);
                 sach.setTenSach(ten);
                 sach.setNamXuatBan(namxb);
                 sach.setGia(gia);
+                sach.setTacgia(tacgia);
+                sach.setNhaxb(nhaxb);
+                sach.setTheloai(theloai);
+                sach.setSoLuong(soluong);
 
                 boolean updated = sachDAO.updateBook(sach); // Giả sử updateBook trả về true nếu cập nhật thành công
 
