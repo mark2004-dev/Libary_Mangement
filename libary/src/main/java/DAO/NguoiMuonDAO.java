@@ -97,7 +97,7 @@ public class NguoiMuonDAO {
                 String tenNguoiMuon = rs.getString("ten_nguoi_muon");
                 LocalDate ngayMuon = rs.getDate("ngay_muon") != null ? rs.getDate("ngay_muon").toLocalDate() : null;
                 LocalDate ngayTra = rs.getDate("ngay_tra") != null ? rs.getDate("ngay_tra").toLocalDate() : null;
-                String trangThai = rs.getString("trang_thai");
+                
                 int soLuongMuon = rs.getInt("so_luong_muon");
 
                 // Khởi tạo đối tượng NguoiMuon với dữ liệu từ cơ sở dữ liệu
